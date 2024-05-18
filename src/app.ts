@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import express from 'express';
 import AdminJS from 'adminjs';
 import { buildAuthenticatedRouter } from '@adminjs/express';
@@ -5,6 +6,10 @@ import { buildAuthenticatedRouter } from '@adminjs/express';
 import provider from './admin/auth-provider.js';
 import options from './admin/options.js';
 import initializeDb from './db/index.js';
+import url from 'url'
+import path from 'path'
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 const port = process.env.PORT || 3000;
 
@@ -35,6 +40,8 @@ const start = async () => {
       resave: true,
     },
   );
+
+  app.use(express.static(path.join(__dirname, '../public')));
 
   app.use(admin.options.rootPath, router);
 
