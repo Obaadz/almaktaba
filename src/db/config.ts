@@ -15,7 +15,11 @@ const config: DataSourceOptions = {
   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: process.env.DATABASE_DIALECT as any,
-  url: process.env.DATABASE_URL,
+  host: process.env.DATABASE_HOST,
+  port: Number(process.env.DATABASE_PORT),
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
   entities: [User, File, Library],
   migrations: [Entities1716070296333, Entities1716072325952, Entities1716072743443, Entities1716074918953, Entities1716086055032],
   migrationsRun: true,
