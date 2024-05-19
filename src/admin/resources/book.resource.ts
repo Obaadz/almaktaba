@@ -1,7 +1,7 @@
 import uploadFeature from '@adminjs/upload';
 import { AdminJSOptions } from "adminjs";
 import componentLoader from '../component-loader.js';
-import { File } from '../../entities/file.entity.js';
+import { Book } from '../../entities/book.entity.js';
 import { beforeUploadFile } from '../actions/before-upload-file.js';
 
 const localProvider = {
@@ -11,8 +11,8 @@ const localProvider = {
   },
 };
 
-const fileResource: AdminJSOptions['resources'][number] = {
-  resource: File,
+const bookResource: AdminJSOptions['resources'][number] = {
+  resource: Book,
   options: {
     properties: {
       key: {
@@ -51,9 +51,36 @@ const fileResource: AdminJSOptions['resources'][number] = {
           filter: false,
         },
       },
-      comment: {
-        type: 'textarea',
-        isSortable: false,
+      title: {
+        type: 'string',
+        isVisible: {
+          list: true,
+          show: true,
+          edit: true,
+          filter: false,
+        },
+      },
+      status: {
+        type: 'string',
+        isVisible: {
+          list: true,
+          show: true,
+          edit: true,
+          filter: true,
+        },
+        availableValues: [
+          { value: 0, label: 'New' },
+          { value: 1, label: 'Used' },
+        ],
+      },
+      price: {
+        type: 'string',
+        isVisible: {
+          list: true,
+          show: true,
+          edit: true,
+          filter: false,
+        },
       },
     },
     actions: {
@@ -78,4 +105,4 @@ const fileResource: AdminJSOptions['resources'][number] = {
   ],
 };
 
-export default fileResource;
+export default bookResource;
