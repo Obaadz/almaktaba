@@ -8,6 +8,8 @@ import options from './admin/options.js';
 import initializeDb from './db/index.js';
 import url from 'url'
 import path from 'path'
+import { authRouter } from './routes/auth.route.js';
+import { libraryRouter } from './routes/library.route.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
@@ -44,6 +46,11 @@ const start = async () => {
   app.use(express.static(path.join(__dirname, '../public')));
 
   app.use(admin.options.rootPath, router);
+
+  app.use(express.json())
+
+  app.use(authRouter)
+  app.use(libraryRouter)
 
   app.listen(port, () => {
     console.log(`AdminJS available at http://localhost:${port}${admin.options.rootPath}`);
