@@ -45,7 +45,7 @@ const bookResource: AdminJSOptions['resources'][number] = {
       url: {
         type: 'string',
         isVisible: {
-          list: true,
+          list: false,
           show: true,
           edit: false,
           filter: false,
