@@ -11,6 +11,7 @@ import path from 'path'
 import { authRouter } from './routes/auth.route.js';
 import { libraryRouter } from './routes/library.route.js';
 import cors from 'cors'
+import { bookRouter } from './routes/book.route.js';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
@@ -54,6 +55,7 @@ const start = async () => {
 
   app.use(authRouter)
   app.use(libraryRouter)
+  app.use(bookRouter)
 
   app.listen(port, () => {
     console.log(`AdminJS available at http://localhost:${port}${admin.options.rootPath}`);
