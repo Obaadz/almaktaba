@@ -36,7 +36,7 @@ export class Book extends BaseEntity {
 
   @ManyToOne(() => User, { eager: true, nullable: false })
   @JoinColumn()
-  public author: User;
+  public seller: User;
 
   public url: string;
 
