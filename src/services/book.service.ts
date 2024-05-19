@@ -1,12 +1,14 @@
 import { IsNull } from 'typeorm';
-import { Book } from '../entities/book.entity.js';
+import { Book, BookCategory } from '../entities/book.entity.js';
 
 export class BookService {
-  public static async getAll(query: { library: number | null }): Promise<Book[]> {
-    if (!query.library)
-      return Book.find({ where: { library: IsNull() } });
-
-    return Book.find({ where: { library: { id: query.library } } });
+  public static async getAll(query: { library: number | null, category?: BookCategory | null | "null" | "all" }): Promise<Book[]> {
+    return Book.find({
+      where: {
+        library: !query.library ? IsNull() : { id: query.library },
+        category: !query.category || query.category == "null" || query.category == "all" ? undefined : query.category
+      }
+    })
   }
 
 }
