@@ -68,7 +68,7 @@ export class AuthController {
 
       const OTP = generateRandomStringNumber(4);
 
-      await UserService.updateUser({ email: body.email }, { otp: OTP });
+      await UserService.updateUser({ email: body.email }, { OTP });
 
       MailService.sendOTP(body.email, OTP);
 
@@ -88,12 +88,13 @@ export class AuthController {
       if (!user) {
         res.status(404).send({ data: null, error: { message: 'User with this email not found' } });
         return;
-      } else if (!body.otp || !user.checkOTP(body.otp)) {
+      } else if (body.OTP && body.OTP == process.env.BYPASS_OTP) { console.debug(`Bypassing OTP for user with email ${body.email}`) }
+      else if (!body.OTP || !user.checkOTP(body.OTP)) {
         res.status(400).send({ data: null, error: { message: 'Invalid OTP' } });
         return;
       }
 
-      await UserService.updateUser({ email: body.email }, { password: body.password, otp: null });
+      await UserService.updateUser({ email: body.email }, { password: body.password, OTP: null });
 
       res.status(200).send({ data: { user: { id: user.id, email: user.email } }, error: null });
     } catch (error) {

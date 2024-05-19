@@ -31,7 +31,7 @@ export class UserService {
     await User.save(user)
   }
 
-  public static async updateUser(query: { email?: string }, payload: { fullName?: string, phone?: string, email?: string, password?: string, otp?: string | null }): Promise<void | ValidationError[]> {
+  public static async updateUser(query: { email?: string }, payload: { fullName?: string, phone?: string, email?: string, password?: string, OTP?: string | null }): Promise<void | ValidationError[]> {
     const user = await UserService.getUserByEmail(query.email)
 
     if (payload.email)
@@ -43,7 +43,7 @@ export class UserService {
     if (payload.password)
       user.password = payload.password ? await argon2.hash(payload.password) : undefined
 
-    user.OTP = payload.otp
+    user.OTP = payload.OTP
 
     const errors = await validate(user)
 
