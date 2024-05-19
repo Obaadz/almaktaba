@@ -25,6 +25,8 @@
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "latest",
+    "nodemailer": "^6.9.13",
+    "randomatic": "^3.1.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.14"
   },

@@ -9,7 +9,7 @@ export class LibraryController {
       res.status(200).send({ data: { libraries }, error: null });
     } catch (error) {
       console.error(error);
-      res.status(500).send({ data: null, error: { statusCode: 500, message: 'Internal server error' } });
+      res.status(500).send({ data: null, error: { message: 'Internal server error' } });
     }
   }
 }

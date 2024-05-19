@@ -23,7 +23,15 @@ export class User extends BaseEntity {
   @IsString()
   public password: string;
 
+  @Column({ nullable: true })
+  @IsString()
+  public OTP: string;
+
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);
+  }
+
+  checkOTP(otp: string): boolean {
+    return this.OTP === otp;
   }
 }
