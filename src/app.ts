@@ -10,6 +10,7 @@ import url from 'url'
 import path from 'path'
 import { authRouter } from './routes/auth.route.js';
 import { libraryRouter } from './routes/library.route.js';
+import cors from 'cors'
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
@@ -17,6 +18,8 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
   const app = express();
+
+  app.use(cors())
 
   await initializeDb();
 
