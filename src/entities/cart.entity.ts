@@ -27,6 +27,10 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   sellerLibrary: Library;
 
-  @OneToMany('CartItem', 'cart')
+  @OneToMany('CartItem', 'cart', { eager: true, nullable: true })
   cartitems: CartItem[];
+
+  get total(): string {
+    return this.cartitems.reduce((acc, item) => acc + item.quantity * Number(item.book.price), 0) + " EGP";
+  }
 }
