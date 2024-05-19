@@ -5,27 +5,27 @@ import { IsEmail, IsString, Length } from 'class-validator';
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public id: number;
+  id: number;
 
   @Column()
   @Length(3, 255)
-  public fullName: string;
+  fullName: string;
 
   @Column()
   @IsString()
-  public phone: string;
+  phone: string;
 
   @Column({ unique: true })
   @IsEmail()
-  public email: string;
+  email: string;
 
   @Column()
   @IsString()
-  public password: string;
+  password: string;
 
   @Column({ nullable: true })
   @IsString()
-  public OTP: string;
+  OTP: string;
 
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);

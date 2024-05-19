@@ -12,38 +12,38 @@ export enum BookStatus {
 @Entity({ name: 'books' })
 export class Book extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public id: number;
+  id: number;
 
   @Column()
-  public key: string;
+  key: string;
 
   @Column()
-  public bucket: string;
+  bucket: string;
 
   @Column()
-  public mime: string;
+  mime: string;
 
   @Column()
   @IsString()
-  public title: string;
+  title: string;
 
   @Column()
   @IsEnum(BookStatus)
-  public status: number;
+  status: number;
 
   @Column()
   @IsString()
-  public price: string;
+  price: string;
 
   @ManyToOne(() => User, { eager: true, nullable: true })
   @JoinColumn()
-  public seller: User;
+  seller: User;
 
   @ManyToOne(() => Library, { eager: true, nullable: true })
   @JoinColumn()
-  public library: Library;
+  library: Library;
 
-  public url: string;
+  url: string;
 
   @AfterLoad()
   getUrl() {

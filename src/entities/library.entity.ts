@@ -3,14 +3,14 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 @Entity({ name: 'libraries' })
 export class Library extends BaseEntity {
   @PrimaryGeneratedColumn()
-  public id: number;
+  id: number;
 
   @Column()
-  public name: string;
+  name: string;
 
   @Column()
-  public lat: string;
+  lat: string;
 
   @Column()
-  public lng: string;
+  lng: string;
 }

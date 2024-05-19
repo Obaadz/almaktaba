@@ -2,9 +2,10 @@ import { User } from '../entities/user.entity.js';
 import { DataSourceOptions } from 'typeorm';
 import { Book } from '../entities/book.entity.js';
 import { Library } from '../entities/library.entity.js';
-import { Entities1716131852409 } from '../migrations/1716131852409-entities.js';
-import { Entities1716134260976 } from '../migrations/1716134260976-entities.js';
-import { Entities1716136106808 } from '../migrations/1716136106808-entities.js';
+import { CartItem } from '../entities/cart-item.entity.js';
+import { Cart } from '../entities/cart.entity.js';
+import migrations from '../migrations/index.js';
+
 
 const config: DataSourceOptions = {
   /*
@@ -14,12 +15,8 @@ const config: DataSourceOptions = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: process.env.DATABASE_DIALECT as any,
   url: process.env.DATABASE_URL,
-  entities: [User, Library, Book],
-  migrations: [
-    Entities1716131852409,
-    Entities1716134260976,
-    Entities1716136106808
-  ],
+  entities: [User, Library, Book, Cart, CartItem],
+  migrations,
   migrationsRun: true,
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'all',

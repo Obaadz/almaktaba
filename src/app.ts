@@ -12,6 +12,7 @@ import { authRouter } from './routes/auth.route.js';
 import { libraryRouter } from './routes/library.route.js';
 import cors from 'cors'
 import { bookRouter } from './routes/book.route.js';
+import morgan from 'morgan'
 
 declare global {
   namespace Express {
@@ -65,6 +66,8 @@ const start = async () => {
   app.use(admin.options.rootPath, router);
 
   app.use(express.json())
+
+  app.use(morgan('dev'))
 
   app.use(authRouter)
   app.use(libraryRouter)
