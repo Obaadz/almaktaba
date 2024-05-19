@@ -2,6 +2,7 @@ import { IsEnum, IsString } from 'class-validator';
 import { FILES_LINK } from '../admin/constants.js';
 import { AfterLoad, BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { User } from './user.entity.js';
+import { Library } from './library.entity.js';
 
 export enum BookStatus {
   New = 1,
@@ -34,9 +35,13 @@ export class Book extends BaseEntity {
   @IsString()
   public price: string;
 
-  @ManyToOne(() => User, { eager: true, nullable: false })
+  @ManyToOne(() => User, { eager: true, nullable: true })
   @JoinColumn()
   public seller: User;
+
+  @ManyToOne(() => Library, { eager: true, nullable: true })
+  @JoinColumn()
+  public library: Library;
 
   public url: string;
 

@@ -13,6 +13,23 @@ export class UserService {
     return jwt.sign({ id: user.id }, process.env.JWT_SECRET)
   }
 
+  public static verifyToken(token: string): { id: number } | null {
+    try {
+      const data = jwt.verify(token, process.env.SECRET)
+
+      if (typeof data === 'string')
+        return null
+
+      return data as {
+        id: number
+      }
+    } catch (error) {
+      console.error(error)
+
+      return null
+    }
+  }
+
 
   public static async createUser(payload: { fullName: string, phone: string, email: string, password: string }): Promise<void | ValidationError[]> {
     const user = new User()

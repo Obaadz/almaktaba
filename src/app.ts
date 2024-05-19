@@ -13,6 +13,19 @@ import { libraryRouter } from './routes/library.route.js';
 import cors from 'cors'
 import { bookRouter } from './routes/book.route.js';
 
+declare global {
+  namespace Express {
+    export interface Request {
+      auth: {
+        user: {
+          id: number
+        }
+        token: string
+      }
+    }
+  }
+}
+
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 
 const port = process.env.PORT || 3000;

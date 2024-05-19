@@ -3,6 +3,6 @@ import { BookController } from "../controllers/book.controller.js";
 
 const bookRouter = Router();
 
-bookRouter.get('/api/books', BookController.getAll);
+bookRouter.get('/api/books', BookController.getAllBooksWithNoLibrary);
 
 export { bookRouter }
