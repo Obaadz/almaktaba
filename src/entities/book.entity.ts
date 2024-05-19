@@ -48,7 +48,7 @@ export class Book extends BaseEntity {
   @IsString()
   price: string;
 
-  @Column()
+  @Column({ nullable: true })
   @IsEnum(BookCategory)
   category: number;
 
