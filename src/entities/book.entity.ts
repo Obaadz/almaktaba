@@ -1,11 +1,11 @@
 import { IsEnum, IsString } from 'class-validator';
 import { FILES_LINK } from '../admin/constants.js';
-import { AfterLoad, BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { AfterLoad, BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { User } from './user.entity.js';
 
 export enum BookStatus {
-  New = 0,
-  Used = 1,
+  New = 1,
+  Used = 2,
 }
 
 @Entity({ name: 'books' })
@@ -28,13 +28,13 @@ export class Book extends BaseEntity {
 
   @Column()
   @IsEnum(BookStatus)
-  public status: BookStatus;
+  public status: number;
 
   @Column()
   @IsString()
   public price: string;
 
-  @OneToOne(() => User, { eager: true })
+  @ManyToOne(() => User, { eager: true, nullable: false })
   @JoinColumn()
   public author: User;
 

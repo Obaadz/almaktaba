@@ -69,8 +69,8 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: true,
         },
         availableValues: [
-          { value: 0, label: 'New' },
-          { value: 1, label: 'Used' },
+          { value: 1, label: 'New' },
+          { value: 2, label: 'Used' },
         ],
       },
       price: {

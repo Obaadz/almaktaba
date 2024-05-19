@@ -2,7 +2,7 @@ import { User } from '../entities/user.entity.js';
 import { DataSourceOptions } from 'typeorm';
 import { Book } from '../entities/book.entity.js';
 import { Library } from '../entities/library.entity.js';
-import { Entities1716127343706 } from '../migrations/1716127343706-entities.js';
+import { Entities1716131852409 } from '../migrations/1716131852409-entities.js';
 
 const config: DataSourceOptions = {
   /*
@@ -14,7 +14,7 @@ const config: DataSourceOptions = {
   url: process.env.DATABASE_URL,
   entities: [User, Library, Book],
   migrations: [
-    Entities1716127343706
+    Entities1716131852409
   ],
   migrationsRun: true,
   migrationsTableName: 'migrations',
