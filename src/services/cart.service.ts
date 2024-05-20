@@ -119,6 +119,8 @@ export class CartService {
     cart.sellerLibrary = null
     cart.cartItems = []
 
-    cart.save()
+    console.log(cart)
+
+    await cart.save()
   }
 }
