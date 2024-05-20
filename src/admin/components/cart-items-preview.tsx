@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { Label, Box } from '@adminjs/design-system';
+import { OrderService } from '../../services/order.service.js';
 
-const CartItemsPreview = (props) => {
-  const { record, resource, where } = props;
-  React.useEffect(() => {
-    console.log('RECORD:', record);
-    console.log('RESOURCE:', resource);
-    console.log('where:', where);
+type Props = {
+  params: {
+    id: number;
+  };
+};
 
-    console.log('props', props);
-  });
-  return <div>hello</div>;
+const CartItemsPreview = async (props: Props) => {
+  const order = await OrderService.getOrderById(props.params.id);
+
+  console.log(order);
+
+  return (
+    <>
+      <Label>
+        Items{'('}Books{')'}
+      </Label>
+    </>
+  );
 };
 
 export default CartItemsPreview;

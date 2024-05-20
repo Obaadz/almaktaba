@@ -24,4 +24,8 @@ export class OrderService {
   public static async getOrdersByOwnerId(ownerId: number): Promise<Order[]> {
     return Order.find({ where: { owner: { id: ownerId } } })
   }
+
+  public static async getOrderById(id: number): Promise<Order> {
+    return Order.findOneBy({ id })
+  }
 }
