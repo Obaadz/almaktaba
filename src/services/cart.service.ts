@@ -95,7 +95,6 @@ export class CartService {
           cart.cartItems = cart.cartItems.filter((item) => item.id != cartItem.id)
 
           await CartItemService.deleteCartItemById(cartItem.id)
-
         }
       }
     }

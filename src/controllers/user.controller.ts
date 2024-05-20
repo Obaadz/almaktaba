@@ -28,6 +28,8 @@ export class UserController {
   public static async updateMyCart(req: Request, res: Response): Promise<void> {
     const { body } = req;
 
+    console.log(body)
+
     let cart = await CartService.getCartByOwnerId(req.auth.user.id);
 
     if (!cart)
