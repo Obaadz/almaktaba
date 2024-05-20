@@ -7,6 +7,8 @@ const CartItemsPreview = (props) => {
     console.log('RECORD:', record);
     console.log('RESOURCE:', resource);
     console.log('where:', where);
+
+    console.log('props', props);
   });
   return <div>hello</div>;
 };
