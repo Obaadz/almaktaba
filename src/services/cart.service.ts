@@ -24,11 +24,17 @@ export class CartService {
     const cart = await CartService.getCartByOwnerId(ownerId),
       book = await BookService.getOneById(bookId)
 
-    console.log("DEBUGER")
-    console.log(await CartItemService.createCartItem(book.id, ownerId))
-
     if (book.library) {
-      if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) { }
+      if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
+        let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
+
+        if (!cartItem)
+          cartItem = await CartItemService.createCartItem(book.id, ownerId)
+        else
+          cartItem.quantity++
+
+        cartItem.save()
+      }
       else {
         cart.sellerLibrary = book.library
         cart.sellerUser = null
@@ -38,7 +44,26 @@ export class CartService {
         ]
       }
     }
-    else if (book.seller) { }
+    else if (book.seller) {
+      if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
+        let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
+
+        if (!cartItem)
+          cartItem = await CartItemService.createCartItem(book.id, ownerId)
+        else
+          cartItem.quantity++
+
+        cartItem.save()
+      }
+      else {
+        cart.sellerUser = book.seller
+        cart.sellerLibrary = null
+
+        cart.cartItems = [
+          await CartItemService.createCartItem(book.id, ownerId)
+        ]
+      }
+    }
 
     await Cart.save(cart)
   }
@@ -47,31 +72,19 @@ export class CartService {
     const cart = await CartService.getCartByOwnerId(ownerId),
       book = await BookService.getOneById(bookId)
 
-    if (book.library) {
-      if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
-        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
+    if (cart.cartItems.length) {
+      let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
 
-          if (cartItem.quantity > 1)
-            cartItem.quantity--
-          else {
-            cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
-            await CartItemService.deleteCartItemById(cartItem.id)
+      if (cartItem) {
+        if (cartItem.quantity > 1)
+          cartItem.quantity--
+        else {
+          if (cart.cartItems.length == 1) {
+            cart.sellerUser = null
+            cart.sellerLibrary = null
           }
-        }
-      }
-    }
-    else if (book.seller) {
-      if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
-        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
 
-          if (cartItem.quantity > 1)
-            cartItem.quantity--
-          else {
-            cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
-            await CartItemService.deleteCartItemById(cartItem.id)
-          }
+          await CartItemService.deleteCartItemById(cartItem.id)
         }
       }
     }
@@ -83,12 +96,17 @@ export class CartService {
     const cart = await CartService.getCartByOwnerId(ownerId),
       book = await BookService.getOneById(bookId)
 
-    if (cart.cartItems)
-      cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
+    if (cart.cartItems.length) {
+      let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
 
-    if (cart.cartItems.length == 0) {
-      cart.sellerUser = null
-      cart.sellerLibrary = null
+      if (cartItem) {
+        if (cart.cartItems.length == 1) {
+          cart.sellerUser = null
+          cart.sellerLibrary = null
+        }
+
+        await CartItemService.deleteCartItemById(cartItem.id)
+      }
     }
 
     await Cart.save(cart)
