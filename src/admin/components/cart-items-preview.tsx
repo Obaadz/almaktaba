@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Label, Box } from '@adminjs/design-system';
-import './main.css';
 
 function transformParams(params: any) {
   const result = {};
@@ -31,23 +30,26 @@ const CartItemsPreview = (props) => {
   console.log(params);
 
   return (
-    <div className="label">
-      <Label>
-        Items{'('}Books{')'}
-      </Label>
-      <div className="flex flex-column">
-        {params.cartItems.map((item) => (
-          <Box key={item.id} className="cart-item">
-            <img src={item.book.url} alt={item.book.title} />
-            <div className="cart-item-details">
-              <h4>{item.book.title}</h4>
-              <p>Price: {item.bookPrice}</p>
-              <p>Quantity: {item.quantity}</p>
-            </div>
-          </Box>
-        ))}
+    <>
+      <link rel="stylesheet" href="/components/cart-items-preview.css" />
+      <div className="label">
+        <Label>
+          Items{'('}Books{')'}
+        </Label>
+        <div className="flex flex-column">
+          {params.cartItems.map((item) => (
+            <Box key={item.id} className="cart-item">
+              <img src={item.book.url} alt={item.book.title} />
+              <div className="cart-item-details">
+                <h4>{item.book.title}</h4>
+                <p>Price: {item.bookPrice}</p>
+                <p>Quantity: {item.quantity}</p>
+              </div>
+            </Box>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

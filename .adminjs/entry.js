@@ -1,4 +1,6 @@
 AdminJS.UserComponents = {}
+import CartItemsPreview from '../dist/admin/components/cart-items-preview'
+AdminJS.UserComponents.CartItemsPreview = CartItemsPreview
 import PasswordEditComponent from '../node_modules/@adminjs/passwords/build/components/PasswordEditComponent'
 AdminJS.UserComponents.PasswordEditComponent = PasswordEditComponent
 import UploadEditComponent from '../node_modules/@adminjs/upload/build/features/upload-file/components/UploadEditComponent'
