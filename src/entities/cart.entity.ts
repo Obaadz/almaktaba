@@ -22,9 +22,11 @@ export class Cart extends BaseEntity {
   owner: User;
 
   @ManyToOne('User', 'carts', { lazy: true, eager: true, cascade: true, })
+  @JoinColumn()
   sellerUser: User;
 
   @ManyToOne('Library', 'carts', { lazy: true, eager: true, cascade: true, })
+  @JoinColumn()
   sellerLibrary: Library;
 
   @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true, })
