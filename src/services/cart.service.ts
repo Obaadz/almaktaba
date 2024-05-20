@@ -26,30 +26,30 @@ export class CartService {
 
     if (book.library) {
       if (cart.sellerLibrary && cart.sellerLibrary?.id == book.library?.id) {
-        if (cart.cartitems?.find(cartItem => cartItem?.book?.id == book.id))
-          cart.cartitems.find(cartItem => cartItem?.book?.id == book.id).quantity++
+        if (cart.cartItems?.find(cartItem => cartItem?.book?.id == book.id))
+          cart.cartItems.find(cartItem => cartItem?.book?.id == book.id).quantity++
         else {
           const cartItem = await CartItemService.createCartItem(bookId, ownerId)
 
-          cart.cartitems.push(cartItem)
+          cart.cartItems.push(cartItem)
         }
       } else {
         cart.sellerLibrary = book.library
-        cart.cartitems = [await CartItemService.createCartItem(bookId, ownerId)]
+        cart.cartItems = [await CartItemService.createCartItem(bookId, ownerId)]
       }
     }
     else if (book.seller) {
       if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id))
-          cart.cartitems.find(cartItem => cartItem.book.id == book.id).quantity++
+        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id))
+          cart.cartItems.find(cartItem => cartItem.book.id == book.id).quantity++
         else {
           const cartItem = await CartItemService.createCartItem(bookId, ownerId)
 
-          cart.cartitems.push(cartItem)
+          cart.cartItems.push(cartItem)
         }
       } else {
         cart.sellerUser = book.seller
-        cart.cartitems = [await CartItemService.createCartItem(bookId, ownerId)]
+        cart.cartItems = [await CartItemService.createCartItem(bookId, ownerId)]
       }
     }
 
@@ -62,13 +62,13 @@ export class CartService {
 
     if (book.library) {
       if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartitems.find(cartItem => cartItem.book.id == book.id)
+        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
+          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
 
           if (cartItem.quantity > 1)
             cartItem.quantity--
           else {
-            cart.cartitems = cart.cartitems.filter(cartItem => cartItem.book.id != book.id)
+            cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
             await CartItemService.deleteCartItemById(cartItem.id)
           }
         }
@@ -76,13 +76,13 @@ export class CartService {
     }
     else if (book.seller) {
       if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartitems.find(cartItem => cartItem.book.id == book.id)
+        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
+          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
 
           if (cartItem.quantity > 1)
             cartItem.quantity--
           else {
-            cart.cartitems = cart.cartitems.filter(cartItem => cartItem.book.id != book.id)
+            cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
             await CartItemService.deleteCartItemById(cartItem.id)
           }
         }
@@ -98,20 +98,20 @@ export class CartService {
 
     if (book.library) {
       if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartitems.find(cartItem => cartItem.book.id == book.id)
+        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
+          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
 
-          cart.cartitems = cart.cartitems.filter(cartItem => cartItem.book.id != book.id)
+          cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
           await CartItemService.deleteCartItemById(cartItem.id)
         }
       }
     }
     else if (book.seller) {
       if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartitems.find(cartItem => cartItem.book.id == book.id)
+        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
+          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
 
-          cart.cartitems = cart.cartitems.filter(cartItem => cartItem.book.id != book.id)
+          cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
           await CartItemService.deleteCartItemById(cartItem.id)
         }
       }

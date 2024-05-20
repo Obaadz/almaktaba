@@ -24,6 +24,6 @@ export class CartItem extends BaseEntity {
   @Column()
   quantity: number;
 
-  @ManyToOne('Cart', 'cartitems', { lazy: true })
+  @ManyToOne('Cart', 'cartItems', { lazy: true })
   cart: Cart;
 }
