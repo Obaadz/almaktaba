@@ -5,6 +5,7 @@ import {
   JoinColumn,
   OneToOne,
   OneToMany,
+  AfterLoad,
 } from 'typeorm';
 import { User } from './user.entity.js';
 import { Library } from './library.entity.js';
@@ -30,7 +31,10 @@ export class Cart extends BaseEntity {
   @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true })
   cartitems: CartItem[];
 
-  get total(): string {
-    return this.cartitems.reduce((acc, item) => acc + item.quantity * Number(item.book.price), 0) + " EGP";
+  total: string
+
+  @AfterLoad()
+  getTotal() {
+    return this.cartitems.reduce((acc, cartItem) => acc + cartItem.quantity * Number(cartItem.book.price), 0) + " EGP";
   }
 }
