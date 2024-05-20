@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class Entities1716229522614 implements MigrationInterface {
-    name = 'Entities1716229522614'
+export class Entities1716233994867 implements MigrationInterface {
+    name = 'Entities1716233994867'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE TABLE \`orders\` (\`id\` int NOT NULL AUTO_INCREMENT, \`ownerId\` int NOT NULL, \`sellerUserId\` int NULL, \`sellerLibraryId\` int NULL, UNIQUE INDEX \`REL_f79a8d61cafb2ad5f27e014ae1\` (\`ownerId\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`orders\` (\`id\` int NOT NULL AUTO_INCREMENT, \`createdAt\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`note\` varchar(255) NULL, \`ownerId\` int NULL, \`sellerUserId\` int NULL, \`sellerLibraryId\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`ALTER TABLE \`cartItems\` ADD \`orderId\` int NULL`);
         await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_f79a8d61cafb2ad5f27e014ae17\` FOREIGN KEY (\`ownerId\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`orders\` ADD CONSTRAINT \`FK_7dd6292d36eb1a3d73318c5a840\` FOREIGN KEY (\`sellerUserId\`) REFERENCES \`users\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
@@ -18,7 +18,6 @@ export class Entities1716229522614 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY \`FK_7dd6292d36eb1a3d73318c5a840\``);
         await queryRunner.query(`ALTER TABLE \`orders\` DROP FOREIGN KEY \`FK_f79a8d61cafb2ad5f27e014ae17\``);
         await queryRunner.query(`ALTER TABLE \`cartItems\` DROP COLUMN \`orderId\``);
-        await queryRunner.query(`DROP INDEX \`REL_f79a8d61cafb2ad5f27e014ae1\` ON \`orders\``);
         await queryRunner.query(`DROP TABLE \`orders\``);
     }
 

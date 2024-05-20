@@ -19,11 +19,11 @@ export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => User, { eager: true, nullable: false })
+  @ManyToOne('User', 'orders', { eager: true, cascade: true, })
   @JoinColumn()
   owner: User;
 
-  @ManyToOne('User', 'orders', { eager: true, cascade: true, })
+  @ManyToOne('User', 'selledOrders', { eager: true, cascade: true, })
   @JoinColumn()
   sellerUser: User;
 

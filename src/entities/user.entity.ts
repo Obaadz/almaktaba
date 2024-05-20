@@ -31,8 +31,11 @@ export class User extends BaseEntity {
   @OneToMany('Cart', 'sellerUser', { nullable: true, })
   carts: Cart[];
 
-  @OneToMany('Order', 'sellerUser', { nullable: true, })
+  @OneToMany('Order', 'owner', { nullable: true, })
   orders: Order[];
+
+  @OneToMany('Order', 'sellerUser', { nullable: true, })
+  selledOrders: Order[];
 
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);
