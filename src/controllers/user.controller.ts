@@ -14,8 +14,33 @@ export class UserController {
     }
   }
 
-  public static async getMeCart(req: Request, res: Response): Promise<void> {
+  public static async getMyCart(req: Request, res: Response): Promise<void> {
     try {
+      const cart = await CartService.getCartByOwnerId(req.auth.user.id);
+
+      res.status(200).send({ data: { cart }, error: null });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ data: null, error: { message: 'Internal server error' } });
+    }
+  }
+
+  public static async updateMyCart(req: Request, res: Response): Promise<void> {
+    const { body } = req;
+    try {
+      switch (body.action) {
+        case 1: // Add or increase book quantity
+          await CartService.addOrIncreaseBookInCartByOne(req.auth.user.id, body.bookId);
+          break;
+        case -1: // Decrease book quantity
+          await CartService.deleteOrDecreaseBookInCartByOne(req.auth.user.id, body.bookId);
+          break;
+        case 0: // Remove book from cart
+        default:
+          await CartService.deleteBookFromCart(req.auth.user.id, body.bookId);
+          break;
+      }
+
       const cart = await CartService.getCartByOwnerId(req.auth.user.id);
 
       res.status(200).send({ data: { cart }, error: null });

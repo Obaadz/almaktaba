@@ -45,7 +45,7 @@ export class AuthController {
 
 
 
-      user = await UserService.getUserByEmail(body.email, ["id", "email", "fullName", "phone"]);
+      user = await UserService.getUserByEmail(body.email);
       const token = await UserService.generateToken(user);
 
       res.status(201).send({ data: { user, token }, error: null });

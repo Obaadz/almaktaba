@@ -6,6 +6,8 @@ const userRouter = Router();
 
 userRouter.get('/api/users/me', ProtectMiddleware.protect, UserController.getMe);
 
-userRouter.get('/api/users/me/cart', ProtectMiddleware.protect, UserController.getMeCart);
+userRouter.get('/api/users/me/cart', ProtectMiddleware.protect, UserController.getMyCart);
+
+userRouter.patch('/api/users/me/cart', ProtectMiddleware.protect, UserController.updateMyCart);
 
 export { userRouter }

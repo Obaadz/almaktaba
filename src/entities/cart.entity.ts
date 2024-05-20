@@ -27,7 +27,7 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   sellerLibrary: Library;
 
-  @OneToMany('CartItem', 'cart', { eager: true, nullable: true })
+  @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true })
   cartitems: CartItem[];
 
   get total(): string {

@@ -11,4 +11,7 @@ export class BookService {
     })
   }
 
+  public static async getOneById(id: number): Promise<Book | undefined> {
+    return Book.findOneBy({ id })
+  }
 }

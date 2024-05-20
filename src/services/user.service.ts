@@ -5,12 +5,12 @@ import { FindOneOptions } from 'typeorm';
 import { validate, ValidationError } from 'class-validator';
 
 export class UserService {
-  public static async getUserByEmail(email: string, select?: FindOneOptions<User>['select']): Promise<User | undefined> {
-    return User.findOne({ where: { email }, select })
+  public static async getUserByEmail(email: string): Promise<User | undefined> {
+    return User.findOne({ where: { email } })
   }
 
-  public static async getUserById(id: number, select?: FindOneOptions<User>['select']): Promise<User | undefined> {
-    return User.findOne({ where: { id }, select })
+  public static async getUserById(id: number): Promise<User | undefined> {
+    return User.findOne({ where: { id } })
   }
 
   public static async generateToken(user: { id: number }): Promise<string> {
