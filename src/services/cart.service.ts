@@ -111,4 +111,14 @@ export class CartService {
 
     await Cart.save(cart)
   }
+
+  public static async clearCart(ownerId: number): Promise<void> {
+    const cart = await CartService.getCartByOwnerId(ownerId);
+
+    cart.sellerUser = null
+    cart.sellerLibrary = null
+    cart.cartItems = []
+
+    cart.save()
+  }
 }

@@ -41,10 +41,14 @@ export class UserController {
         case -1: // Decrease book quantity
           await CartService.deleteOrDecreaseBookInCartByOne(req.auth.user.id, body.bookId);
           break;
+        case 2: // Clear cart
+          await CartService.clearCart(req.auth.user.id)
+          break
         case 0: // Remove book from cart
         default:
           await CartService.deleteBookFromCart(req.auth.user.id, body.bookId);
           break;
+
       }
 
       cart = await CartService.getCartByOwnerId(req.auth.user.id);
