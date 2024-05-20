@@ -6,6 +6,7 @@ import {
   OneToOne,
   OneToMany,
   AfterLoad,
+  ManyToOne,
 } from 'typeorm';
 import { User } from './user.entity.js';
 import { Library } from './library.entity.js';
@@ -20,12 +21,10 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   owner: User;
 
-  @OneToOne(() => User, { eager: false, nullable: true, })
-  @JoinColumn()
+  @ManyToOne('User', 'carts', { lazy: true })
   sellerUser: User;
 
-  @OneToOne(() => Library, { eager: false, nullable: true })
-  @JoinColumn()
+  @ManyToOne('Library', 'carts', { lazy: true })
   sellerLibrary: Library;
 
   @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true, })
