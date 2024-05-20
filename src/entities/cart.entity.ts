@@ -20,7 +20,7 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   owner: User;
 
-  @OneToOne(() => User, { eager: false, nullable: true })
+  @OneToOne(() => User, { eager: false, nullable: true, })
   @JoinColumn()
   sellerUser: User;
 
