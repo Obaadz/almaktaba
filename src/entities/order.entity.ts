@@ -32,6 +32,7 @@ export class Order extends BaseEntity {
   sellerLibrary: Library;
 
   @OneToMany('CartItem', 'order', { eager: true, nullable: true, cascade: true, })
+  @JoinColumn()
   cartItems: CartItem[];
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
