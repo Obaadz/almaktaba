@@ -41,7 +41,7 @@ export class CartService {
       }
       else {
         cart.sellerLibrary = book.library
-        cart.sellerUser = null
+        delete cart.sellerUser
 
         cart.cartItems = [
           await CartItemService.createCartItem(book.id, ownerId)
@@ -52,16 +52,20 @@ export class CartService {
       if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
         let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
 
-        if (!cartItem)
+        if (!cartItem) {
           cartItem = await CartItemService.createCartItem(book.id, ownerId)
-        else
+
+          cart.cartItems.push(cartItem)
+        }
+        else {
           cartItem.quantity++
 
-        cartItem.save()
+          await cartItem.save()
+        }
       }
       else {
         cart.sellerUser = book.seller
-        cart.sellerLibrary = null
+        delete cart.sellerLibrary
 
         cart.cartItems = [
           await CartItemService.createCartItem(book.id, ownerId)
@@ -87,8 +91,8 @@ export class CartService {
         }
         else {
           if (cart.cartItems.length == 1) {
-            cart.sellerUser = null
-            cart.sellerLibrary = null
+            delete cart.sellerUser
+            delete cart.sellerLibrary
           }
 
           cart.cartItems = cart.cartItems.filter((item) => item.id != cartItem.id)
@@ -111,8 +115,8 @@ export class CartService {
 
       if (cartItem) {
         if (cart.cartItems.length == 1) {
-          cart.sellerUser = null
-          cart.sellerLibrary = null
+          delete cart.sellerUser
+          delete cart.sellerLibrary
         }
 
         await CartItemService.deleteCartItemById(cartItem.id)
@@ -125,8 +129,8 @@ export class CartService {
   public static async clearCart(ownerId: number): Promise<void> {
     const cart = await CartService.getCartByOwnerId(ownerId);
 
-    cart.sellerUser = null
-    cart.sellerLibrary = null
+    delete cart.sellerUser
+    delete cart.sellerLibrary
     cart.cartItems = []
 
     await cart.save()
