@@ -78,7 +78,7 @@ export class CartService {
       if (cartItem) {
         if (cartItem.quantity > 1) {
           cartItem.quantity--
-
+          console.log("I'mHere")
           await cartItem.save()
         }
         else {
