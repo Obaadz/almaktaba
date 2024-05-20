@@ -98,26 +98,7 @@ export class CartService {
     const cart = await CartService.getCartByOwnerId(ownerId),
       book = await BookService.getOneById(bookId)
 
-    if (book.library) {
-      if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
-        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
-
-          cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
-          await CartItemService.deleteCartItemById(cartItem.id)
-        }
-      }
-    }
-    else if (book.seller) {
-      if (cart.sellerUser && cart.sellerUser.id == book.seller.id) {
-        if (cart.cartItems.find(cartItem => cartItem.book.id == book.id)) {
-          const cartItem = cart.cartItems.find(cartItem => cartItem.book.id == book.id)
-
-          cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
-          await CartItemService.deleteCartItemById(cartItem.id)
-        }
-      }
-    }
+    cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
 
     await Cart.save(cart)
   }
