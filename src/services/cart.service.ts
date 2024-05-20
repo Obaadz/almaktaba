@@ -35,6 +35,7 @@ export class CartService {
         }
       } else {
         cart.sellerLibrary = book.library
+        cart.sellerUser = null
         cart.cartItems = [await CartItemService.createCartItem(bookId, ownerId)]
       }
     }
@@ -49,6 +50,7 @@ export class CartService {
         }
       } else {
         cart.sellerUser = book.seller
+        cart.sellerLibrary = null
         cart.cartItems = [await CartItemService.createCartItem(bookId, ownerId)]
       }
     }
