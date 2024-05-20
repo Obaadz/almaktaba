@@ -27,6 +27,12 @@ export class UserController {
 
   public static async updateMyCart(req: Request, res: Response): Promise<void> {
     const { body } = req;
+
+    let cart = await CartService.getCartByOwnerId(req.auth.user.id);
+
+    if (!cart)
+      cart = await CartService.createCart(req.auth.user.id);
+
     try {
       switch (body.action) {
         case 1: // Add or increase book quantity
@@ -41,7 +47,7 @@ export class UserController {
           break;
       }
 
-      const cart = await CartService.getCartByOwnerId(req.auth.user.id);
+      cart = await CartService.getCartByOwnerId(req.auth.user.id);
 
       res.status(200).send({ data: { cart }, error: null });
     } catch (error) {

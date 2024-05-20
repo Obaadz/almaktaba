@@ -29,7 +29,6 @@ export class UserService {
       }
     } catch (error) {
       console.error(error)
-
       return null
     }
   }

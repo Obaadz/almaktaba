@@ -25,9 +25,9 @@ export class CartService {
       book = await BookService.getOneById(bookId)
 
     if (book.library) {
-      if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
-        if (cart.cartitems.find(cartItem => cartItem.book.id == book.id))
-          cart.cartitems.find(cartItem => cartItem.book.id == book.id).quantity++
+      if (cart.sellerLibrary && cart.sellerLibrary?.id == book.library?.id) {
+        if (cart.cartitems?.find(cartItem => cartItem?.book?.id == book.id))
+          cart.cartitems.find(cartItem => cartItem?.book?.id == book.id).quantity++
         else {
           const cartItem = await CartItemService.createCartItem(bookId, ownerId)
 
