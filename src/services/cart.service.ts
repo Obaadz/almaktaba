@@ -76,8 +76,11 @@ export class CartService {
       let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
 
       if (cartItem) {
-        if (cartItem.quantity > 1)
+        if (cartItem.quantity > 1) {
           cartItem.quantity--
+
+          await cartItem.save()
+        }
         else {
           if (cart.cartItems.length == 1) {
             cart.sellerUser = null
