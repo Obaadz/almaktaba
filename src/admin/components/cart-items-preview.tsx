@@ -27,6 +27,8 @@ function transformParams(params: any) {
 const CartItemsPreview = (props) => {
   const params: Params = transformParams(props.record.params);
 
+  console.log(params);
+
   return (
     <div style={{ color: 'rgb(137, 138, 154)' }}>
       <Label>
