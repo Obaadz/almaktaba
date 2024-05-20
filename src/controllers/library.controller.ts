@@ -18,7 +18,11 @@ export class LibraryController {
     const { libraryId } = req.params;
 
     try {
-      const books = await BookService.getAll({ library: Number(libraryId) })
+      const books = await BookService.getAll({
+        library: Number(libraryId),
+        category: req.query.category && req.query.category != "null"
+          ? Number(req.query.category) : null
+      })
 
       res.status(200).send({ data: { books }, error: null });
     } catch (error) {
