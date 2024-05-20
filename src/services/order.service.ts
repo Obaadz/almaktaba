@@ -1,8 +1,4 @@
 import { Order } from '../entities/order.entity.js';
-import { Cart } from '../entities/cart.entity.js';
-import { BookService } from './book.service.js';
-import { CartItemService } from './cart-item.service.js';
-import { UserService } from './user.service.js';
 import { CartService } from './cart.service.js';
 
 export class OrderService {
