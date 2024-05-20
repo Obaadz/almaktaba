@@ -19,7 +19,7 @@ export class UserService {
 
   public static verifyToken(token: string): { id: number } | null {
     try {
-      const data = jwt.verify(token, process.env.SECRET)
+      const data = jwt.verify(token, process.env.JWT_SECRET)
 
       if (typeof data === 'string')
         return null
