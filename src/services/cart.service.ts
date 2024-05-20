@@ -100,6 +100,11 @@ export class CartService {
 
     cart.cartItems = cart.cartItems.filter(cartItem => cartItem.book.id != book.id)
 
+    if (cart.cartItems.length == 0) {
+      cart.sellerUser = null
+      cart.sellerLibrary = null
+    }
+
     await Cart.save(cart)
   }
 }
