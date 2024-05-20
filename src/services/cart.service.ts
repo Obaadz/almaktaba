@@ -41,7 +41,7 @@ export class CartService {
       }
       else {
         cart.sellerLibrary = book.library
-
+        console.log("i'm hereeeeee")
         await CartItemService.createCartItem(book.id, ownerId)
       }
     }
