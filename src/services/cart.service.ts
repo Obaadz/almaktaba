@@ -28,12 +28,16 @@ export class CartService {
       if (cart.sellerLibrary && cart.sellerLibrary.id == book.library.id) {
         let cartItem = cart.cartItems.find((item) => item.book.id == book.id)
 
-        if (!cartItem)
+        if (!cartItem) {
           cartItem = await CartItemService.createCartItem(book.id, ownerId)
-        else
+
+          cart.cartItems.push(cartItem)
+        }
+        else {
           cartItem.quantity++
 
-        cartItem.save()
+          await cartItem.save()
+        }
       }
       else {
         cart.sellerLibrary = book.library
