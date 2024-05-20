@@ -17,14 +17,6 @@ const orderResource: AdminJSOptions['resources'][number] = {
           list: true,
         },
       },
-      cartItems: {
-        isVisible: {
-          list: false,
-          edit: true,
-          filter: false,
-          show: true,
-        },
-      },
       total: {
         isVisible: {
           list: true,
@@ -46,9 +38,6 @@ const orderResource: AdminJSOptions['resources'][number] = {
     actions: {
       new: {
         isVisible: false,
-      },
-      edit: {
-        layout: ["note", "cartItems"],
       },
       bulkDelete: {
         isVisible: false,
