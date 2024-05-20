@@ -30,26 +30,58 @@ const CartItemsPreview = (props) => {
   console.log(params);
 
   return (
-    <>
-      <link rel="stylesheet" href="/components/cart-items-preview.css" />
-      <div className="label">
-        <Label>
-          Items{'('}Books{')'}
-        </Label>
-        <div className="flex flex-column">
-          {params.cartItems.map((item) => (
-            <Box key={item.id} className="cart-item">
-              <img src={item.book.url} alt={item.book.title} />
-              <div className="cart-item-details">
-                <h4>{item.book.title}</h4>
-                <p>Price: {item.bookPrice}</p>
-                <p>Quantity: {item.quantity}</p>
-              </div>
-            </Box>
-          ))}
-        </div>
+    <div
+      style={{
+        fontFamily: 'Roboto, sans-serif',
+        fontSize: '12px',
+        lineHeight: '16px',
+        color: 'rgb(137, 138, 154)',
+        marginBottom: '4px',
+        fontWeight: '300',
+      }}
+    >
+      <Label>
+        Items{'('}Books{')'}
+      </Label>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {params.cartItems.map((item) => (
+          <Box
+            key={item.id}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.25rem',
+              marginBottom: '0.5rem',
+            }}
+          >
+            <img
+              src={item.book.url}
+              alt={item.book.title}
+              style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '0.25rem',
+              }}
+            />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <h4>{item.book.title}</h4>
+              <p>Price: {item.bookPrice}</p>
+              <p>Quantity: {item.quantity}</p>
+            </div>
+          </Box>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
