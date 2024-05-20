@@ -1,5 +1,6 @@
 import { AdminJSOptions } from "adminjs";
 import { Order } from "../../entities/order.entity.js";
+import { components } from "../component-loader.js";
 
 const orderResource: AdminJSOptions['resources'][number] = {
   resource: Order,
@@ -19,11 +20,13 @@ const orderResource: AdminJSOptions['resources'][number] = {
       },
       cartItems: {
         isVisible: {
-          list: true,
+          list: false,
           edit: false,
-          new: false,
           filter: false,
           show: true,
+        },
+        components: {
+          show: components.CartItemsPreview
         },
       },
       total: {
@@ -47,6 +50,9 @@ const orderResource: AdminJSOptions['resources'][number] = {
     actions: {
       new: {
         isVisible: false,
+      },
+      edit: {
+        layout: ["note",],
       },
       bulkDelete: {
         isVisible: false,
