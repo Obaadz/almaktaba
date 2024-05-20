@@ -41,11 +41,9 @@ export class CartService {
       }
       else {
         cart.sellerLibrary = book.library
-        delete cart.sellerUser
-
-        cart.cartItems = [
-          await CartItemService.createCartItem(book.id, ownerId)
-        ]
+        cart.sellerUser = null
+        console.log("i'm hereeeeee")
+        await CartItemService.createCartItem(book.id, ownerId)
       }
     }
     else if (book.seller) {
@@ -65,7 +63,7 @@ export class CartService {
       }
       else {
         cart.sellerUser = book.seller
-        delete cart.sellerLibrary
+        cart.sellerLibrary = null
 
         cart.cartItems = [
           await CartItemService.createCartItem(book.id, ownerId)
@@ -91,8 +89,8 @@ export class CartService {
         }
         else {
           if (cart.cartItems.length == 1) {
-            delete cart.sellerUser
-            delete cart.sellerLibrary
+            cart.sellerUser = null
+            cart.sellerLibrary = null
           }
 
           cart.cartItems = cart.cartItems.filter((item) => item.id != cartItem.id)
@@ -115,8 +113,8 @@ export class CartService {
 
       if (cartItem) {
         if (cart.cartItems.length == 1) {
-          delete cart.sellerUser
-          delete cart.sellerLibrary
+          cart.sellerUser = null
+          cart.sellerLibrary = null
         }
 
         await CartItemService.deleteCartItemById(cartItem.id)
@@ -129,8 +127,8 @@ export class CartService {
   public static async clearCart(ownerId: number): Promise<void> {
     const cart = await CartService.getCartByOwnerId(ownerId);
 
-    delete cart.sellerUser
-    delete cart.sellerLibrary
+    cart.sellerUser = null
+    cart.sellerLibrary = null
     cart.cartItems = []
 
     await cart.save()
