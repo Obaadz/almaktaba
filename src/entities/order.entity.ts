@@ -7,13 +7,15 @@ import {
   OneToMany,
   AfterLoad,
   ManyToOne,
+  CreateDateColumn,
+  Column,
 } from 'typeorm';
 import { User } from './user.entity.js';
 import { Library } from './library.entity.js';
 import { CartItem } from './cart-item.entity.js';
 
-@Entity({ name: 'carts' })
-export class Cart extends BaseEntity {
+@Entity({ name: 'orders' })
+export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -21,16 +23,22 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   owner: User;
 
-  @ManyToOne('User', 'carts', { eager: true, cascade: true, })
+  @ManyToOne('User', 'orders', { eager: true, cascade: true, })
   @JoinColumn()
   sellerUser: User;
 
-  @ManyToOne('Library', 'carts', { eager: true, cascade: true, })
+  @ManyToOne('Library', 'orders', { eager: true, cascade: true, })
   @JoinColumn()
   sellerLibrary: Library;
 
-  @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true, })
+  @OneToMany('CartItem', 'order', { eager: true, nullable: true, cascade: true, })
   cartItems: CartItem[];
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
+  createdAt: Date
+
+  @Column({ nullable: true })
+  note: string
 
   total: string
 

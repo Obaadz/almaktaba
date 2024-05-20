@@ -10,4 +10,6 @@ userRouter.get('/api/users/me/cart', ProtectMiddleware.protect, UserController.g
 
 userRouter.patch('/api/users/me/cart', ProtectMiddleware.protect, UserController.updateMyCart);
 
+userRouter.get('/api/users/me/orders', ProtectMiddleware.protect, UserController.getMyOrders);
+
 export { userRouter }

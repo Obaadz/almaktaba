@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { UserService } from '../services/user.service.js';
 import { CartService } from '../services/cart.service.js';
+import { OrderService } from '../services/order.service.js';
 
 export class UserController {
   public static async getMe(req: Request, res: Response): Promise<void> {
@@ -56,6 +57,17 @@ export class UserController {
       cart = await CartService.getCartByOwnerId(req.auth.user.id);
 
       res.status(200).send({ data: { cart }, error: null });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ data: null, error: { message: 'Internal server error' } });
+    }
+  }
+
+  public static async getMyOrders(req: Request, res: Response): Promise<void> {
+    try {
+      const orders = await OrderService.getOrdersByOwnerId(req.auth.user.id);
+
+      res.status(200).send({ data: { orders }, error: null });
     } catch (error) {
       console.error(error);
       res.status(500).send({ data: null, error: { message: 'Internal server error' } });

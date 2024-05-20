@@ -2,6 +2,7 @@ import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 't
 import argon2 from 'argon2';
 import { IsEmail, IsOptional, IsString, Length } from 'class-validator';
 import { Cart } from './cart.entity.js';
+import { Order } from './order.entity.js';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -29,6 +30,9 @@ export class User extends BaseEntity {
 
   @OneToMany('Cart', 'sellerUser', { nullable: true, })
   carts: Cart[];
+
+  @OneToMany('Order', 'sellerUser', { nullable: true, })
+  orders: Order[];
 
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);

@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Book } from './book.entity.js';
 import { Cart } from './cart.entity.js';
+import { Order } from './order.entity.js';
 
 @Entity({ name: 'cartItems' })
 export class CartItem extends BaseEntity {
@@ -26,4 +27,7 @@ export class CartItem extends BaseEntity {
 
   @ManyToOne('Cart', 'cartItems', { lazy: true })
   cart: Cart;
+
+  @ManyToOne('Order', 'cartItems', { lazy: true })
+  order: Order;
 }
