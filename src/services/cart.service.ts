@@ -41,7 +41,6 @@ export class CartService {
       }
       else {
         cart.sellerLibrary = book.library
-        cart.sellerUser = null
         console.log("debug1")
         await CartItemService.createCartItem(book.id, ownerId)
         console.log("debug2")
@@ -71,9 +70,9 @@ export class CartService {
         ]
       }
     }
-
-    await cart.save()
     console.log("debug3")
+    await cart.save()
+    console.log("debug4")
   }
 
   public static async deleteOrDecreaseBookInCartByOne(ownerId: number, bookId: number): Promise<void> {
