@@ -18,7 +18,7 @@ export class CartItemService {
     cartItem.cart = cart
     cartItem.quantity = 1
 
-    await CartItem.save(cartItem)
+    await cartItem.save()
 
     return cartItem
   }
