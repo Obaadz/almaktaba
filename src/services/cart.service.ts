@@ -15,7 +15,7 @@ export class CartService {
 
     cart.owner = owner
 
-    await Cart.save(cart)
+    await cart.save()
 
     return cart
   }
@@ -65,7 +65,7 @@ export class CartService {
       }
     }
 
-    await Cart.save(cart)
+    await cart.save()
   }
 
   public static async deleteOrDecreaseBookInCartByOne(ownerId: number, bookId: number): Promise<void> {
@@ -89,7 +89,7 @@ export class CartService {
       }
     }
 
-    await Cart.save(cart)
+    await cart.save()
   }
 
   public static async deleteBookFromCart(ownerId: number, bookId: number): Promise<void> {
@@ -109,7 +109,7 @@ export class CartService {
       }
     }
 
-    await Cart.save(cart)
+    await cart.save()
   }
 
   public static async clearCart(ownerId: number): Promise<void> {
@@ -118,8 +118,6 @@ export class CartService {
     cart.sellerUser = null
     cart.sellerLibrary = null
     cart.cartItems = []
-
-    console.log(cart)
 
     await cart.save()
   }
