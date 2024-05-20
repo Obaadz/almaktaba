@@ -17,6 +17,15 @@ const orderResource: AdminJSOptions['resources'][number] = {
           list: true,
         },
       },
+      cartItems: {
+        isVisible: {
+          list: true,
+          edit: false,
+          new: false,
+          filter: false,
+          show: true,
+        },
+      },
       total: {
         isVisible: {
           list: true,
