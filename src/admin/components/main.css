@@ -1,0 +1,35 @@
+.label {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgb(137, 138, 154);
+  margin-bottom: 4px;
+  font-weight: 300;
+}
+
+.flex {
+  display: flex
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
