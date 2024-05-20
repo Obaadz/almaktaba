@@ -77,7 +77,7 @@ export class CartService {
 
       if (cartItem) {
         if (cartItem.quantity > 1) {
-          cartItem.quantity--
+          cartItem.quantity--;
           console.log("I'mHere")
           await cartItem.save()
         }
@@ -87,7 +87,10 @@ export class CartService {
             cart.sellerLibrary = null
           }
 
+          cart.cartItems = cart.cartItems.filter((item) => item.id != cartItem.id)
+
           await CartItemService.deleteCartItemById(cartItem.id)
+
         }
       }
     }
