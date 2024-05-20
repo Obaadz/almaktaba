@@ -73,6 +73,7 @@ export class CartService {
     }
 
     await cart.save()
+    console.log("debug3")
   }
 
   public static async deleteOrDecreaseBookInCartByOne(ownerId: number, bookId: number): Promise<void> {
