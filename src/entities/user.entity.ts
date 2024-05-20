@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import argon2 from 'argon2';
-import { IsEmail, IsString, Length } from 'class-validator';
+import { IsEmail, IsOptional, IsString, Length } from 'class-validator';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -24,7 +24,6 @@ export class User extends BaseEntity {
   password: string;
 
   @Column({ nullable: true })
-  @IsString()
   OTP: string;
 
   checkPassword(password: string): Promise<boolean> {
