@@ -36,4 +36,8 @@ export class Cart extends BaseEntity {
   getTotal() {
     this.total = this.cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * parseInt(cartItem.bookPrice), 0) + " EGP";
   }
+
+  @AfterLoad()
+  getSellerLibrary() {
+  }
 }

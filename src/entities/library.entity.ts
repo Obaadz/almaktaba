@@ -15,6 +15,6 @@ export class Library extends BaseEntity {
   @Column()
   lng: string;
 
-  @OneToMany('Cart', 'library', { nullable: true, })
+  @OneToMany('Cart', 'sellerLibrary', { nullable: true, })
   carts: Cart[];
 }

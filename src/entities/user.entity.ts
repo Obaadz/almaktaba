@@ -27,7 +27,7 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   OTP: string;
 
-  @OneToMany('Cart', 'user', { nullable: true, })
+  @OneToMany('Cart', 'sellerUser', { nullable: true, })
   carts: Cart[];
 
   checkPassword(password: string): Promise<boolean> {
