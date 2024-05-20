@@ -13,6 +13,7 @@ import { libraryRouter } from './routes/library.route.js';
 import cors from 'cors'
 import { bookRouter } from './routes/book.route.js';
 import morgan from 'morgan'
+import { userRouter } from './routes/user.route.js';
 
 declare global {
   namespace Express {
@@ -72,6 +73,7 @@ const start = async () => {
   app.use(authRouter)
   app.use(libraryRouter)
   app.use(bookRouter)
+  app.use(userRouter)
 
   app.listen(port, () => {
     console.log(`AdminJS available at http://localhost:${port}${admin.options.rootPath}`);

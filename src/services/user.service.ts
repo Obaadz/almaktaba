@@ -9,6 +9,10 @@ export class UserService {
     return User.findOne({ where: { email }, select })
   }
 
+  public static async getUserById(id: number, select?: FindOneOptions<User>['select']): Promise<User | undefined> {
+    return User.findOne({ where: { id }, select })
+  }
+
   public static async generateToken(user: { id: number }): Promise<string> {
     return jwt.sign({ id: user.id }, process.env.JWT_SECRET)
   }
