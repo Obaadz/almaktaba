@@ -18,6 +18,9 @@ export class CartItem extends BaseEntity {
   @JoinColumn()
   book: Book;
 
+  @Column({ nullable: true })
+  bookPrice: string;
+
   @Column()
   quantity: number;
 

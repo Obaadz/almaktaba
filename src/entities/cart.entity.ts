@@ -28,13 +28,13 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   sellerLibrary: Library;
 
-  @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true })
+  @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true, })
   cartitems: CartItem[];
 
   total: string
 
   @AfterLoad()
   getTotal() {
-    return this.cartitems.reduce((acc, cartItem) => acc + cartItem.quantity * Number(cartItem.book.price), 0) + " EGP";
+    return this.cartitems.reduce((acc, cartItem) => acc + cartItem.quantity * Number(cartItem.bookPrice), 0) + " EGP";
   }
 }

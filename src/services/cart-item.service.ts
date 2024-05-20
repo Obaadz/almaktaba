@@ -1,8 +1,6 @@
 import { CartItem } from '../entities/cart-item.entity.js';
-import { Cart } from '../entities/cart.entity.js';
 import { BookService } from './book.service.js';
 import { CartService } from './cart.service.js';
-import { UserService } from './user.service.js';
 
 export class CartItemService {
   public static async getCartItemByBookId(id: number): Promise<CartItem | undefined> {
@@ -16,6 +14,7 @@ export class CartItemService {
     const cartItem = new CartItem()
 
     cartItem.book = book
+    cartItem.bookPrice = book.price
     cartItem.cart = cart
     cartItem.quantity = 1
 
