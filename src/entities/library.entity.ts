@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Cart } from './cart.entity.js';
 
 @Entity({ name: 'libraries' })
 export class Library extends BaseEntity {
@@ -13,4 +14,7 @@ export class Library extends BaseEntity {
 
   @Column()
   lng: string;
+
+  @OneToMany('Cart', 'library', { nullable: true, })
+  carts: Cart[];
 }

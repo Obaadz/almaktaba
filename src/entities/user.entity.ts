@@ -1,6 +1,7 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import argon2 from 'argon2';
 import { IsEmail, IsOptional, IsString, Length } from 'class-validator';
+import { Cart } from './cart.entity.js';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -25,6 +26,9 @@ export class User extends BaseEntity {
 
   @Column({ nullable: true })
   OTP: string;
+
+  @OneToMany('Cart', 'user', { nullable: true, })
+  carts: Cart[];
 
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);

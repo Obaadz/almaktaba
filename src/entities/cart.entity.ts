@@ -21,10 +21,10 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   owner: User;
 
-  @ManyToOne('User', 'carts', { lazy: true })
+  @ManyToOne('User', 'carts', { lazy: true, eager: true, cascade: true, })
   sellerUser: User;
 
-  @ManyToOne('Library', 'carts', { lazy: true })
+  @ManyToOne('Library', 'carts', { lazy: true, eager: true, cascade: true, })
   sellerLibrary: Library;
 
   @OneToMany('CartItem', 'cart', { eager: true, nullable: true, cascade: true, })
