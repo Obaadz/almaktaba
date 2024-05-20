@@ -41,9 +41,10 @@ export class CartService {
       }
       else {
         cart.sellerLibrary = book.library
-        console.log("i'm hereeeeee")
+        cart.sellerUser = null
+        console.log("debug1")
         await CartItemService.createCartItem(book.id, ownerId)
-        console.log("TEST")
+        console.log("debug2")
       }
     }
     else if (book.seller) {
