@@ -3,14 +3,14 @@ import { UserService } from './user.service.js';
 import { RoomService } from './room.service.js';
 
 export class MessageService {
-  public static async createMessage(roomId: number, senderId: number, content: string): Promise<Message> {
+  public static async createMessage(payload: { roomId: number, senderId: number, content: string }): Promise<Message> {
 
-    const room = await RoomService.getRoomById(roomId)
-    const sender = await UserService.getUserById(senderId)
+    const room = await RoomService.getRoomById(payload.roomId)
+    const sender = await UserService.getUserById(payload.senderId)
 
     const message = new Message()
 
-    message.content = content
+    message.content = payload.content
     message.sender = sender
     message.room = room
 

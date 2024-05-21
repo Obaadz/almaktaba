@@ -24,6 +24,12 @@ export class RoomService {
     return Room.find()
   }
 
+  public static async getRoomsByUserId(userId: number): Promise<Room[]> {
+    const user = await UserService.getUserById(userId)
+
+    return Room.find({ where: [{ owner: user }, { users: user }] })
+  }
+
   public static async removeAllRooms(): Promise<void> {
     await Room.clear()
   }

@@ -74,7 +74,9 @@ export class RoomController {
         return;
       }
 
-      const message = await MessageService.createMessage(Number(params.id), req.auth.user.id, body.content);
+      const message = await MessageService.createMessage({
+        roomId: Number(params.id), senderId: req.auth.user.id, content: body.content
+      });
 
       res.status(200).send({ data: { message }, error: null });
     } catch (error) {
