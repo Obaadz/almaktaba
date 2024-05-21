@@ -11,7 +11,6 @@ export class Message extends BaseEntity {
   content: string;
 
   @ManyToOne('User', 'messages', { eager: true, nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-  @JoinColumn()
   sender: User;
 
   @ManyToOne('Room', 'messages', { nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
