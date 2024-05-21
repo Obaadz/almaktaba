@@ -16,9 +16,11 @@ const config: DataSourceOptions = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: process.env.DATABASE_DIALECT as any,
   url: process.env.DATABASE_URL,
-  entities: [User, Library, Book, Cart, CartItem, Order],
+  entities: [User, Library, Book, Cart, CartItem,
+    Order
+  ],
   migrations,
-  migrationsRun: true,
+  migrationsRun: false,
   migrationsTableName: 'migrations',
   migrationsTransactionMode: 'all',
   subscribers: [],

@@ -3,7 +3,6 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   JoinColumn,
-  OneToOne,
   OneToMany,
   AfterLoad,
   ManyToOne,
@@ -40,6 +39,9 @@ export class Order extends BaseEntity {
 
   @Column({ nullable: true })
   note: string
+
+  @Column()
+  code: string
 
   total: string
 

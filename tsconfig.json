@@ -19,5 +19,5 @@
     "esModuleInterop": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/src/**/*"]
+  "include": ["**/src/**/*", "src/migrations/1716252295109-entites.ts"]
 }

@@ -1,7 +1,6 @@
 import { User } from '../entities/user.entity.js';
 import jwt from "jsonwebtoken"
 import argon2 from 'argon2';
-import { FindOneOptions } from 'typeorm';
 import { validate, ValidationError } from 'class-validator';
 
 export class UserService {

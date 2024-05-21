@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import argon2 from 'argon2';
-import { IsEmail, IsOptional, IsString, Length } from 'class-validator';
+import { IsEmail, IsString, Length } from 'class-validator';
 import { Cart } from './cart.entity.js';
 import { Order } from './order.entity.js';
 

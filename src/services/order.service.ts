@@ -13,7 +13,7 @@ export class OrderService {
     order.cartItems = cart.cartItems
     order.sellerLibrary = cart.sellerLibrary
     order.sellerUser = cart.sellerUser
-    // order.code = generateRandomStringNumber(12)
+    order.code = generateRandomStringNumber(12)
 
     if (note)
       order.note = note
