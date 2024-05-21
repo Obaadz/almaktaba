@@ -1,5 +1,6 @@
 import { IsNull } from 'typeorm';
-import { Book, BookCategory } from '../entities/book.entity.js';
+import { Book } from '../entities/book.entity.js';
+import { BookCategory } from '../utils/enums.js';
 
 export class BookService {
   public static async getAll(query: { library: number | null, category?: BookCategory | null | "null" | "all" }): Promise<Book[]> {
