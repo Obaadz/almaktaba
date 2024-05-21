@@ -2,8 +2,8 @@ import { OrderService } from "../../services/order.service.js"
 
 export const afterEditOrder = async (res, req, ctx) => {
   if (req.method === "post") {
-    console.log("ID:", req.params.id)
-    const order = await OrderService.getOrderById(req.params.id)
+    console.log("ID:", req.payload.id)
+    const order = await OrderService.getOrderById(req.payload.id)
 
     order.code = req.payload.code
     order.note = req.payload.note
