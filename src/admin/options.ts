@@ -6,6 +6,8 @@ import libraryResource from './resources/library.resource.js';
 import orderResource from './resources/order.resource.js';
 import cartResource from './resources/cart.resource.js';
 import cartItemResource from './resources/cart-item.resource.js';
+import messageResource from './resources/message.resource.js';
+import roomResource from './resources/room.resource.js';
 
 const options: AdminJSOptions = {
   componentLoader,
@@ -16,7 +18,9 @@ const options: AdminJSOptions = {
     bookResource,
     orderResource,
     cartResource,
-    cartItemResource
+    cartItemResource,
+    roomResource,
+    messageResource,
   ],
   databases: [],
 };

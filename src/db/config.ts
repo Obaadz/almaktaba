@@ -6,6 +6,8 @@ import { CartItem } from '../entities/cart-item.entity.js';
 import { Cart } from '../entities/cart.entity.js';
 import { Order } from '../entities/order.entity.js';
 import migrations from '../migrations/index.js';
+import { Room } from '../entities/room.entity.js';
+import { Message } from '../entities/message.entity.js';
 
 
 const config: DataSourceOptions = {
@@ -17,7 +19,7 @@ const config: DataSourceOptions = {
   type: process.env.DATABASE_DIALECT as any,
   url: process.env.DATABASE_URL,
   entities: [User, Library, Book, Cart, CartItem,
-    Order
+    Order, Room, Message
   ],
   migrations,
   migrationsRun: false,

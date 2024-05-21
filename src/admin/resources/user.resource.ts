@@ -26,6 +26,14 @@ const userResource: AdminJSOptions['resources'][number] = {
           list: true,
         },
       },
+      messages: {
+        isVisible: {
+          show: false,
+          edit: false,
+          filter: false,
+          list: false,
+        },
+      },
     },
   },
   features: [
