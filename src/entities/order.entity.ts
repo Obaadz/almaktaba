@@ -49,6 +49,9 @@ export class Order extends BaseEntity {
   @Column({ default: false })
   hasBeenRated: boolean
 
+  @Column({ nullable: true })
+  rate: string
+
   total: string
 
   @AfterLoad()

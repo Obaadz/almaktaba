@@ -37,6 +37,12 @@ export class User extends BaseEntity {
   @OneToMany('Order', 'sellerUser', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   selledOrders: Order[];
 
+  @Column({ default: 0 })
+  rateCount: number;
+
+  @Column({ nullable: true, default: "5" })
+  totalRate: string;
+
   checkPassword(password: string): Promise<boolean> {
     return argon2.verify(this.password, password);
   }

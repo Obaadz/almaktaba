@@ -21,4 +21,10 @@ export class Library extends BaseEntity {
 
   @OneToMany('Order', 'sellerLibrary', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   orders: Order[];
+
+  @Column({ default: 0 })
+  rateCount: number;
+
+  @Column({ nullable: true, default: "5" })
+  totalRate: string;
 }
