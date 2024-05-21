@@ -19,6 +19,6 @@ export class Library extends BaseEntity {
   @OneToMany('Cart', 'sellerLibrary', { nullable: true, })
   carts: Cart[];
 
-  @OneToMany('Order', 'sellerLibrary', { nullable: true, })
+  @OneToMany('Order', 'sellerLibrary', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   orders: Order[];
 }

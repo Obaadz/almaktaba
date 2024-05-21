@@ -28,13 +28,13 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   OTP: string;
 
-  @OneToMany('Cart', 'sellerUser', { nullable: true, })
+  @OneToMany('Cart', 'sellerUser', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   carts: Cart[];
 
-  @OneToMany('Order', 'owner', { nullable: true, })
+  @OneToMany('Order', 'owner', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   orders: Order[];
 
-  @OneToMany('Order', 'sellerUser', { nullable: true, })
+  @OneToMany('Order', 'sellerUser', { nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   selledOrders: Order[];
 
   checkPassword(password: string): Promise<boolean> {

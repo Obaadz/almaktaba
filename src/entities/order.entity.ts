@@ -18,19 +18,19 @@ export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne('User', 'orders', { eager: true, cascade: true, })
+  @ManyToOne('User', 'orders', { eager: true, cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
   owner: User;
 
-  @ManyToOne('User', 'selledOrders', { eager: true, cascade: true, })
+  @ManyToOne('User', 'selledOrders', { eager: true, cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
   sellerUser: User;
 
-  @ManyToOne('Library', 'orders', { eager: true, cascade: true, })
+  @ManyToOne('Library', 'orders', { eager: true, cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
   sellerLibrary: Library;
 
-  @OneToMany('CartItem', 'order', { eager: true, nullable: true, cascade: true, })
+  @OneToMany('CartItem', 'order', { eager: true, nullable: true, cascade: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn()
   cartItems: CartItem[];
 

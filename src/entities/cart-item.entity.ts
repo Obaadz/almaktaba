@@ -28,6 +28,6 @@ export class CartItem extends BaseEntity {
   @ManyToOne('Cart', 'cartItems', { lazy: true })
   cart: Cart;
 
-  @ManyToOne('Order', 'cartItems', { lazy: true })
+  @ManyToOne('Order', 'cartItems', { lazy: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   order: Order;
 }
