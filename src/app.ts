@@ -16,6 +16,8 @@ import morgan from 'morgan'
 import { userRouter } from './routes/user.route.js';
 import { orderRouter } from './routes/order.route.js';
 import { roomRouter } from './routes/room.route.js';
+import { SocketIOServer } from './socket-io.js';
+import http from "http";
 
 declare global {
   namespace Express {
@@ -79,7 +81,11 @@ const start = async () => {
   app.use(orderRouter)
   app.use(roomRouter)
 
-  app.listen(port, () => {
+  const server = http.createServer(app);
+
+  SocketIOServer.initalize(server);
+
+  server.listen(port, () => {
     console.log(`AdminJS available at http://localhost:${port}${admin.options.rootPath}`);
   });
 };
