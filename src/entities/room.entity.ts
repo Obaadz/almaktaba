@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Message } from './message.entity.js';
 import { User } from './user.entity.js';
 
@@ -14,6 +14,7 @@ export class Room extends BaseEntity {
   owner: User
 
   @ManyToMany('User', 'joinedRooms', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @JoinTable()
   users: User[];
 
   @OneToMany('Message', 'room', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
