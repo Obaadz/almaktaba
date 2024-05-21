@@ -21,7 +21,7 @@ export class Room extends BaseEntity {
   messages: Message[];
 
   checkIfJoined(user: User): boolean {
-    return this.users.some(u => u.id === user.id);
+    return this.checkIfOwner(user) || this.users.some(u => u.id === user.id);
   }
 
   checkIfOwner(user: User): boolean {
