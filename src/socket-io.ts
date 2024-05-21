@@ -30,7 +30,7 @@ export class SocketIOServer {
 
   public static startIOListeners() {
     SocketIOServer.io.use(async (socket: SocketProtected, next) => {
-      const token = socket.handshake.auth.token
+      const token = socket.handshake.auth.token || socket.handshake.headers['authorization']
 
       console.log("token:", token)
 
