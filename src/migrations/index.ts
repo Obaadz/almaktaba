@@ -4,6 +4,7 @@ import { Entities1716258246024 } from "./1716258246024-entities.js";
 import { Entities1716258805596 } from "./1716258805596-entities.js";
 import { Entities1716260066058 } from "./1716260066058-entities.js";
 import { Entities1716261826277 } from "./1716261826277-entities.js";
+import { Entities1716301597727 } from "./1716301597727-entities.js";
 
 export default [
   Entites1716252295109,
@@ -11,5 +12,6 @@ export default [
   Entities1716258246024,
   Entities1716258805596,
   Entities1716260066058,
-  Entities1716261826277
+  Entities1716261826277,
+  Entities1716301597727
 ] 
