@@ -1,6 +1,7 @@
 import { AdminJSOptions } from "adminjs";
 import { Order } from "../../entities/order.entity.js";
 import { components } from "../component-loader.js";
+import { beforeEditOrder } from "../actions/before-edit-order.js";
 
 const orderResource: AdminJSOptions['resources'][number] = {
   resource: Order,
@@ -10,14 +11,14 @@ const orderResource: AdminJSOptions['resources'][number] = {
       sortBy: "createdAt",
     },
     properties: {
-      // code: {
-      //   isVisible: {
-      //     show: true,
-      //     edit: false,
-      //     filter: true,
-      //     list: true,
-      //   },
-      // },
+      code: {
+        isVisible: {
+          show: true,
+          edit: false,
+          filter: true,
+          list: true,
+        },
+      },
       cartItems: {
         // isVisible: {
         //   list: false,
@@ -38,22 +39,25 @@ const orderResource: AdminJSOptions['resources'][number] = {
           show: true,
         },
       },
-      // createdAt: {
-      //   isVisible: {
-      //     show: true,
-      //     edit: false,
-      //     filter: true,
-      //     list: true,
-      //   },
-      // },
+      createdAt: {
+        isVisible: {
+          show: true,
+          edit: false,
+          filter: true,
+          list: true,
+        },
+      },
     },
     actions: {
-      // new: {
-      //   isVisible: false,
-      // },
+      new: {
+        isVisible: false,
+      },
       // edit: {
       //   layout: ["note"],
       // },
+      edit: {
+        before: [beforeEditOrder],
+      },
       bulkDelete: {
         isVisible: false,
       },
