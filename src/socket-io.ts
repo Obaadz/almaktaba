@@ -62,7 +62,10 @@ export class SocketIOServer {
 
         const sentMessage = await MessageService.getMessageById(newMessage.id)
 
+
         socket.broadcast.emit('message', sentMessage)
+
+        console.log("Message sent:", sentMessage)
       })
     })
 
