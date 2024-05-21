@@ -1,8 +1,15 @@
-import { Order } from "../../entities/order.entity.js"
+import { OrderService } from "../../services/order.service.js"
 
 export const afterEditOrder = async (res, req, ctx) => {
   if (req.method === "post") {
-    await Order.update({ id: req.params.id }, { code: req.payload.code, note: req.payload.note })
+    const order = await OrderService.getOrderById(req.params.id)
+
+    console.log(req.payload)
+
+    order.code = req.payload.code
+    order.note = req.payload.note
+
+    await order.save()
   }
 
   return res
