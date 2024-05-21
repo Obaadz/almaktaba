@@ -10,7 +10,6 @@ type SocketProtected = Socket & {
 
 type Message = {
   roomId: number;
-  senderId: number;
   content: string;
 };
 
@@ -59,7 +58,7 @@ export class SocketIOServer {
       socket.on('message', async (message: Message) => {
         console.log('Message received:', message)
 
-        const sentMessage = await MessageService.createMessage(message)
+        const sentMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
 
         socket.broadcast.emit('message', sentMessage)
       })
