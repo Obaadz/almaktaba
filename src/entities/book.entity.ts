@@ -3,24 +3,7 @@ import { FILES_LINK } from '../admin/constants.js';
 import { AfterLoad, BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { User } from './user.entity.js';
 import { Library } from './library.entity.js';
-
-export enum BookStatus {
-  New = 1,
-  Used = 2,
-}
-
-export enum BookCategory {
-  Drama = 1,
-  Fantasy = 2,
-  Action = 3,
-  "Sci-fi" = 4,
-  Romance = 5,
-  War = 6,
-  Psychology = 7,
-  Thriller = 8,
-  "Dark fantasy" = 9,
-  Comedy = 10
-}
+import { BookCategory, BookStatus } from '../utils/enums.js';
 
 @Entity({ name: 'books' })
 export class Book extends BaseEntity {

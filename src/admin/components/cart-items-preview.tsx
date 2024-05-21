@@ -1,5 +1,44 @@
 import * as React from 'react';
 import { Label, Box } from '@adminjs/design-system';
+import { BookStatus, BookCategory } from '../../utils/enums.js';
+
+const bookStatusNumToString = (status: BookStatus) => {
+  switch (status) {
+    case BookStatus.New:
+      return 'New';
+    case BookStatus.Used:
+      return 'Used';
+    default:
+      return 'Unknown';
+  }
+};
+
+const BookCategoryNumToString = (category: BookCategory) => {
+  switch (category) {
+    case BookCategory.Drama:
+      return 'Drama';
+    case BookCategory.Fantasy:
+      return 'Fantasy';
+    case BookCategory.Action:
+      return 'Action';
+    case BookCategory['Sci-fi']:
+      return 'Sci-fi';
+    case BookCategory.Romance:
+      return 'Romance';
+    case BookCategory.War:
+      return 'War';
+    case BookCategory.Psychology:
+      return 'Psychology';
+    case BookCategory.Thriller:
+      return 'Thriller';
+    case BookCategory['Dark fantasy']:
+      return 'Dark fantasy';
+    case BookCategory.Comedy:
+      return 'Comedy';
+    default:
+      return 'Unknown';
+  }
+};
 
 function transformParams(params: any) {
   const result = {};
@@ -40,9 +79,7 @@ const CartItemsPreview = (props) => {
         fontWeight: '300',
       }}
     >
-      <Label>
-        Items{'('}Books{')'}
-      </Label>
+      <Label>Books</Label>
       <div
         style={{
           display: 'flex',
@@ -72,11 +109,14 @@ const CartItemsPreview = (props) => {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
+                color: 'unset',
               }}
             >
-              <h4>{item.book.title}</h4>
+              <h4>title: {item.book.title}</h4>
               <p>Price: {item.bookPrice}</p>
               <p>Quantity: {item.quantity}</p>
+              <p>Status: {bookStatusNumToString(item.book.status)}</p>
+              <p>Category: {BookCategoryNumToString(item.book.category)}</p>
             </div>
           </Box>
         ))}

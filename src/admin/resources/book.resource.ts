@@ -1,8 +1,9 @@
 import uploadFeature from '@adminjs/upload';
 import { AdminJSOptions } from "adminjs";
 import componentLoader from '../component-loader.js';
-import { Book, BookCategory, BookStatus } from '../../entities/book.entity.js';
+import { Book } from '../../entities/book.entity.js';
 import { beforeUploadFile } from '../actions/before-upload-file.js';
+import { BookCategory, BookStatus } from '../../utils/enums.js';
 
 const localProvider = {
   bucket: 'public/files',
@@ -69,8 +70,8 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: true,
         },
         availableValues: [
-          { value: 1, label: "New" },
-          { value: 2, label: "Used" },
+          { value: BookStatus.New, label: "New" },
+          { value: BookStatus.Used, label: "Used" },
         ],
       },
       category: {
@@ -82,16 +83,16 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: true,
         },
         availableValues: [
-          { value: 1, label: "Drama" },
-          { value: 2, label: "Fantasy" },
-          { value: 3, label: "Action" },
-          { value: 4, label: 'Sci-fi' },
-          { value: 5, label: "Romance" },
-          { value: 6, label: "War" },
-          { value: 7, label: "Psychology" },
-          { value: 8, label: "Thriller" },
-          { value: 9, label: 'Dark fantasy' },
-          { value: 10, label: "Comedy" },
+          { value: BookCategory.Drama, label: "Drama" },
+          { value: BookCategory.Fantasy, label: "Fantasy" },
+          { value: BookCategory.Action, label: "Action" },
+          { value: BookCategory['Sci-fi'], label: 'Sci-fi' },
+          { value: BookCategory.Romance, label: "Romance" },
+          { value: BookCategory.War, label: "War" },
+          { value: BookCategory.Psychology, label: "Psychology" },
+          { value: BookCategory.Thriller, label: "Thriller" },
+          { value: BookCategory['Dark fantasy'], label: 'Dark fantasy' },
+          { value: BookCategory.Comedy, label: "Comedy" },
         ],
       },
       price: {
