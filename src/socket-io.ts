@@ -54,7 +54,7 @@ export class SocketIOServer {
     })
 
     SocketIOServer.io.on('connection', (socket: SocketProtected) => {
-      console.log('User connected:', socket.user.id)
+      console.log('User connected, ID of user:', socket.user.id)
 
       socket.on('message', async (message: Message) => {
         console.log('Message received:', message)
@@ -66,7 +66,7 @@ export class SocketIOServer {
     })
 
     SocketIOServer.io.on('disconnect', (socket: SocketProtected) => {
-      console.log('User disconnected:', socket.user.id)
+      console.log('User disconnected, ID of user:', socket.user.id)
     })
   }
 }
