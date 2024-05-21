@@ -4,9 +4,9 @@ import { RoomController } from "../controllers/room.controller.js";
 
 const roomRouter = Router();
 
-roomRouter.get('/api/rooms', RoomController.getAllRooms);
+roomRouter.get('/api/rooms', ProtectMiddleware.protect, RoomController.getAllRooms);
 
-roomRouter.get('/api/rooms/:id', RoomController.getRoom);
+roomRouter.get('/api/rooms/:id', ProtectMiddleware.protect, RoomController.getRoom);
 
 roomRouter.post('/api/rooms', ProtectMiddleware.protect, RoomController.createRoom);
 
