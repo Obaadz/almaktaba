@@ -89,7 +89,7 @@ export class OrderController {
         await user.save()
       }
 
-      res.status(200).send({ data: { order }, error: null });
+      res.status(200).send({ data: { order: await OrderService.getOrderById(Number(params.id)) }, error: null });
     } catch (error) {
       console.error(error);
       res.status(500).send({ data: null, error: { message: 'Internal server error' } });
