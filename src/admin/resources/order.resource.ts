@@ -20,12 +20,12 @@ const orderResource: AdminJSOptions['resources'][number] = {
         },
       },
       cartItems: {
-        // isVisible: {
-        //   list: false,
-        //   edit: false,
-        //   filter: false,
-        //   show: true,
-        // },
+        isVisible: {
+          list: false,
+          edit: false,
+          filter: false,
+          show: true,
+        },
         components: {
           show: components.CartItemsPreview
         },
@@ -52,10 +52,8 @@ const orderResource: AdminJSOptions['resources'][number] = {
       new: {
         isVisible: false,
       },
-      // edit: {
-      //   layout: ["note"],
-      // },
       edit: {
+        layout: ["note", "code"],
         before: [beforeEditOrder],
       },
       bulkDelete: {

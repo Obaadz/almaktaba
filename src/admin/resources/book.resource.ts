@@ -4,6 +4,7 @@ import componentLoader from '../component-loader.js';
 import { Book } from '../../entities/book.entity.js';
 import { beforeUploadFile } from '../actions/before-upload-file.js';
 import { BookCategory, BookStatus } from '../../utils/enums.js';
+import { beforeNewOrEditBook } from '../actions/before-new-or-edit-book.js';
 
 const localProvider = {
   bucket: 'public/files',
@@ -107,10 +108,10 @@ const bookResource: AdminJSOptions['resources'][number] = {
     },
     actions: {
       new: {
-        before: [beforeUploadFile],
+        before: [beforeUploadFile, beforeNewOrEditBook],
       },
       edit: {
-        before: [beforeUploadFile],
+        before: [beforeUploadFile, beforeNewOrEditBook],
       },
     },
   },
