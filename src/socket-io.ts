@@ -32,7 +32,9 @@ export class SocketIOServer {
     SocketIOServer.io.use(async (socket: SocketProtected, next) => {
       const token = socket.handshake.auth.token
 
-      const data = UserService.verifyToken(token)
+      console.log("token:", token)
+
+      const data = UserService.verifyToken(token || "")
 
       if (!data) {
         next(new Error('Unauthorized'))
