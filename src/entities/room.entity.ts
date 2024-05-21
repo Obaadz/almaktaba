@@ -19,4 +19,16 @@ export class Room extends BaseEntity {
 
   @OneToMany('Message', 'room', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   messages: Message[];
+
+  checkIfJoined(user: User): boolean {
+    return this.users.some(u => u.id === user.id);
+  }
+
+  checkIfOwner(user: User): boolean {
+    return this.owner.id === user.id;
+  }
+
+  isOwner: boolean;
+
+  hasJoined: boolean;
 }
