@@ -43,6 +43,12 @@ export class Order extends BaseEntity {
   @Column()
   code: string
 
+  @Column({ default: false })
+  hasBeenCompleted: boolean
+
+  @Column({ default: false })
+  hasBeenRated: boolean
+
   total: string
 
   @AfterLoad()

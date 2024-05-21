@@ -54,7 +54,7 @@ const orderResource: AdminJSOptions['resources'][number] = {
         isVisible: false,
       },
       edit: {
-        layout: ["note", "code"],
+        layout: ["note", "code", "hasBeenCompleted"],
         before: [beforeEditOrder],
         after: [afterEditOrder]
       },
