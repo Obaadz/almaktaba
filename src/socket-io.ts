@@ -60,7 +60,23 @@ export class SocketIOServer {
 
         const newMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
 
-        SocketIOServer.io.emit('message', newMessage)
+        SocketIOServer.io.emit('message', {
+          id: newMessage.id,
+          content: newMessage.content,
+          createdAt: newMessage.createdAt,
+          room: {
+            id: newMessage.room.id,
+            name: newMessage.room.name,
+            owner: {
+              id: newMessage.room.owner.id,
+              fullName: newMessage.room.owner.fullName
+            }
+          },
+          sender: {
+            id: newMessage.sender.id,
+            fullName: newMessage.sender.fullName
+          },
+        })
       })
     })
 
