@@ -2,6 +2,7 @@ import { AdminJSOptions } from "adminjs";
 import { Order } from "../../entities/order.entity.js";
 import { components } from "../component-loader.js";
 import { beforeEditOrder } from "../actions/before-edit-order.js";
+import { afterEditOrder } from "../actions/after-edit-order.js";
 
 const orderResource: AdminJSOptions['resources'][number] = {
   resource: Order,
@@ -55,6 +56,7 @@ const orderResource: AdminJSOptions['resources'][number] = {
       edit: {
         layout: ["note", "code"],
         before: [beforeEditOrder],
+        after: [afterEditOrder]
       },
       bulkDelete: {
         isVisible: false,
