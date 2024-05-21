@@ -7,7 +7,26 @@ import passwordsFeature from '@adminjs/passwords';
 const userResource: AdminJSOptions['resources'][number] = {
   resource: User,
   options: {
-    properties: { password: { isVisible: false }, OTP: { isVisible: false } },
+    properties: {
+      password: { isVisible: false },
+      OTP: { isVisible: false },
+      rateCount: {
+        isVisible: {
+          show: true,
+          edit: false,
+          filter: true,
+          list: true,
+        },
+      },
+      totalRate: {
+        isVisible: {
+          show: true,
+          edit: false,
+          filter: true,
+          list: true,
+        },
+      },
+    },
   },
   features: [
     passwordsFeature({
