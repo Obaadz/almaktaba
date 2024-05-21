@@ -25,6 +25,6 @@ export class Library extends BaseEntity {
   @Column({ default: 0 })
   rateCount: number;
 
-  @Column({ nullable: true, default: "5" })
+  @Column({ nullable: true, default: "5.00" })
   totalRate: string;
 }
