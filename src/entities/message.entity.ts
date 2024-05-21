@@ -10,12 +10,10 @@ export class Message extends BaseEntity {
   @Column({ nullable: false })
   content: string;
 
-  @ManyToOne('User', 'messages', { nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-  @JoinColumn()
+  @ManyToOne('User', 'messages', { eager: true, nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   sender: User;
 
   @ManyToOne('Room', 'messages', { nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-  @JoinColumn()
   room: Room;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
