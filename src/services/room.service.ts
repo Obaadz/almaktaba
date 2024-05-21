@@ -27,4 +27,19 @@ export class RoomService {
   public static async removeAllRooms(): Promise<void> {
     await Room.clear()
   }
+
+  public static async joinRoom(userId: number, roomId: number): Promise<void> {
+    const user = await UserService.getUserById(userId)
+    const room = await RoomService.getRoomById(roomId)
+
+    room.users.push(user)
+
+    await room.save()
+  }
+
+  public static async deleteRoom(roomId: number): Promise<void> {
+    const room = await RoomService.getRoomById(roomId)
+
+    await room.remove()
+  }
 }
