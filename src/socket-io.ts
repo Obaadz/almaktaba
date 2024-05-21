@@ -56,9 +56,11 @@ export class SocketIOServer {
       console.log('User connected, ID of user:', socket.user.id)
 
       socket.on('message', async (message: Message) => {
-        console.log('Message received:', message)
+        console.log('Message received:', message, "from user:", socket.user.id, "to room:", message.roomId)
 
-        const sentMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
+        const newMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
+
+        const sentMessage = await MessageService.getMessageById(newMessage.id)
 
         socket.broadcast.emit('message', sentMessage)
       })
