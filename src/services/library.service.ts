@@ -5,4 +5,8 @@ export class LibraryService {
     return Library.find()
   }
 
+  public static async getLibraryById(id: number): Promise<Library> {
+    return Library.findOneBy({ id })
+  }
+
 }
