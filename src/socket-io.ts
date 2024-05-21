@@ -60,12 +60,7 @@ export class SocketIOServer {
 
         const newMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
 
-        const sentMessage = await MessageService.getMessageById(newMessage.id)
-
-
-        socket.broadcast.emit('message', sentMessage)
-
-        console.log("Message sent:", sentMessage)
+        SocketIOServer.io.emit('message', newMessage)
       })
     })
 
