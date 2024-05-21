@@ -41,9 +41,6 @@ export class Order extends BaseEntity {
   @Column({ nullable: true })
   note: string
 
-  @Column({ nullable: true })
-  code: string
-
   total: string
 
   @AfterLoad()

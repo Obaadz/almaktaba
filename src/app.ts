@@ -15,6 +15,7 @@ import { bookRouter } from './routes/book.route.js';
 import morgan from 'morgan'
 import { userRouter } from './routes/user.route.js';
 import { orderRouter } from './routes/order.route.js';
+import { OrderService } from './services/order.service.js';
 
 declare global {
   namespace Express {
@@ -76,6 +77,8 @@ const start = async () => {
   app.use(bookRouter)
   app.use(userRouter)
   app.use(orderRouter)
+
+  OrderService.removeAllOrders()
 
   app.listen(port, () => {
     console.log(`AdminJS available at http://localhost:${port}${admin.options.rootPath}`);

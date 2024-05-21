@@ -13,7 +13,7 @@ const orderResource: AdminJSOptions['resources'][number] = {
       code: {
         isVisible: {
           show: true,
-          edit: true,
+          edit: false,
           filter: true,
           list: true,
         },
@@ -52,7 +52,7 @@ const orderResource: AdminJSOptions['resources'][number] = {
         isVisible: false,
       },
       edit: {
-        layout: ["note", "code"],
+        layout: ["note"],
       },
       bulkDelete: {
         isVisible: false,

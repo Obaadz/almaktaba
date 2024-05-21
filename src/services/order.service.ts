@@ -1,3 +1,4 @@
+import { generateRandomStringNumber } from '../utils/generate-random-string-number.js';
 import { Order } from '../entities/order.entity.js';
 import { CartService } from './cart.service.js';
 
@@ -12,6 +13,7 @@ export class OrderService {
     order.cartItems = cart.cartItems
     order.sellerLibrary = cart.sellerLibrary
     order.sellerUser = cart.sellerUser
+    // order.code = generateRandomStringNumber(12)
 
     if (note)
       order.note = note
@@ -27,5 +29,9 @@ export class OrderService {
 
   public static async getOrderById(id: number): Promise<Order> {
     return Order.findOneBy({ id })
+  }
+
+  public static async removeAllOrders(): Promise<void> {
+    await Order.clear()
   }
 }
