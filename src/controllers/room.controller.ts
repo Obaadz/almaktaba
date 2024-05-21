@@ -59,10 +59,10 @@ export class RoomController {
   }
 
   public static async sendMessageToRoom(req: Request, res: Response): Promise<void> {
-    const { body } = req;
+    const { body, params } = req;
 
     try {
-      const room = await RoomService.getRoomById(body.roomId);
+      const room = await RoomService.getRoomById(Number(params.id));
 
       const user = await UserService.getUserById(req.auth.user.id);
 
@@ -74,7 +74,7 @@ export class RoomController {
         return;
       }
 
-      const message = await MessageService.createMessage(body.roomId, req.auth.user.id, body.content);
+      const message = await MessageService.createMessage(Number(params.id), req.auth.user.id, body.content);
 
       res.status(200).send({ data: { message }, error: null });
     } catch (error) {
@@ -84,10 +84,10 @@ export class RoomController {
   }
 
   public static async joinRoom(req: Request, res: Response): Promise<void> {
-    const { body } = req;
+    const { params } = req;
 
     try {
-      let room = await RoomService.getRoomById(body.roomId);
+      let room = await RoomService.getRoomById(Number(params.id));
 
       const user = await UserService.getUserById(req.auth.user.id);
 
@@ -100,9 +100,9 @@ export class RoomController {
         return;
       }
 
-      await RoomService.joinRoom(req.auth.user.id, body.roomId);
+      await RoomService.joinRoom(req.auth.user.id, Number(params.id));
 
-      room = await RoomService.getRoomById(body.roomId);
+      room = await RoomService.getRoomById(Number(params.id));
 
       res.status(200).send({ data: { room }, error: null });
     } catch (error) {
