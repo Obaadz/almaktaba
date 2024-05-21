@@ -77,12 +77,16 @@ export class OrderController {
         library.rateCount += 1
 
         library.totalRate = (((parseFloat(library.totalRate) * (library.rateCount - 1)) + Number(order.rate)) / library.rateCount).toFixed(2)
+
+        await library.save()
       } else if (order.sellerUser) {
         const user = await UserService.getUserById(order.sellerUser.id)
 
         user.rateCount += 1
 
         user.totalRate = (((parseFloat(user.totalRate) * (user.rateCount - 1)) + Number(order.rate)) / user.rateCount).toFixed(2)
+
+        await user.save()
       }
 
       res.status(200).send({ data: { order }, error: null });
