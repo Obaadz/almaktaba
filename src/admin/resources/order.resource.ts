@@ -10,21 +10,21 @@ const orderResource: AdminJSOptions['resources'][number] = {
       sortBy: "createdAt",
     },
     properties: {
-      code: {
-        isVisible: {
-          show: true,
-          edit: false,
-          filter: true,
-          list: true,
-        },
-      },
+      // code: {
+      //   isVisible: {
+      //     show: true,
+      //     edit: false,
+      //     filter: true,
+      //     list: true,
+      //   },
+      // },
       cartItems: {
-        isVisible: {
-          list: false,
-          edit: false,
-          filter: false,
-          show: true,
-        },
+        // isVisible: {
+        //   list: false,
+        //   edit: false,
+        //   filter: false,
+        //   show: true,
+        // },
         components: {
           show: components.CartItemsPreview
         },
@@ -38,22 +38,22 @@ const orderResource: AdminJSOptions['resources'][number] = {
           show: true,
         },
       },
-      createdAt: {
-        isVisible: {
-          show: true,
-          edit: false,
-          filter: true,
-          list: true,
-        },
-      },
+      // createdAt: {
+      //   isVisible: {
+      //     show: true,
+      //     edit: false,
+      //     filter: true,
+      //     list: true,
+      //   },
+      // },
     },
     actions: {
-      new: {
-        isVisible: false,
-      },
-      edit: {
-        layout: ["note"],
-      },
+      // new: {
+      //   isVisible: false,
+      // },
+      // edit: {
+      //   layout: ["note"],
+      // },
       bulkDelete: {
         isVisible: false,
       },
