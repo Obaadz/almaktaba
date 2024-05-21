@@ -13,14 +13,6 @@ const roomResource: AdminJSOptions['resources'][number] = {
           list: true,
         },
       },
-      owner: {
-        isVisible: {
-          show: true,
-          edit: false,
-          filter: true,
-          list: true,
-        },
-      },
       users: {
         isVisible: {
           show: true,

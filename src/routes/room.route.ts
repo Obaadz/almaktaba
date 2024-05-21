@@ -10,5 +10,4 @@ roomRouter.get('/api/rooms/:id', RoomController.getRoom);
 
 roomRouter.post('/api/rooms', ProtectMiddleware.protect, RoomController.createRoom);
 
-
 export { roomRouter }
