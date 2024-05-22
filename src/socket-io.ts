@@ -63,7 +63,7 @@ export class SocketIOServer {
       socket.on('message', async (payload: Message) => {
         console.log('Message received:', payload, "from user:", socket.user.id, "to room:", payload.roomId)
 
-        if (!payload.content || !payload.roomId) {
+        if (!payload || !payload.content || !payload.roomId || typeof payload.content != 'string' || typeof payload.roomId != 'number') {
           console.error('Invalid message payload:', payload)
           socket.emit('error', 'Invalid message payload')
           return
