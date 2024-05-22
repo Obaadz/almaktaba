@@ -86,10 +86,10 @@ export class SocketIOServer {
 
         socket.emit('error', error)
       })
-    })
 
-    SocketIOServer.io.on('disconnect', (socket: SocketProtected) => {
-      console.log('User disconnected, ID of user:', socket.user.id)
+      socket.on('disconnect', () => {
+        console.log('User disconnected, ID of user:', socket.user.id)
+      })
     })
 
     SocketIOServer.io.on('error', (error) => {
