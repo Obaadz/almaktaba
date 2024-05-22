@@ -29,6 +29,8 @@ export class SocketIOServer {
 
   public static startIOListeners() {
     SocketIOServer.io.use(async (socket: SocketProtected, next) => {
+      console.log("socket auth:", socket.id)
+
       const token = socket.handshake.auth.token || socket.handshake.headers['authorization']
 
       console.log("token:", token)
