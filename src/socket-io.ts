@@ -63,6 +63,12 @@ export class SocketIOServer {
       socket.on('message', async (payload: Message) => {
         console.log('Message received:', payload, "from user:", socket.user.id, "to room:", payload.roomId)
 
+        if (!payload.content || !payload.roomId) {
+          console.error('Invalid message payload:', payload)
+          socket.emit('error', 'Invalid message payload')
+          return
+        }
+
         const room = await RoomService.getRoomById(payload.roomId)
 
         if (!room) {
