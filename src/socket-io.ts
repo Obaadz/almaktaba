@@ -3,6 +3,7 @@ import { Server, Socket } from "socket.io";
 import { User } from "./entities/user.entity.js";
 import { UserService } from "./services/user.service.js";
 import { MessageService } from "./services/message.service.js";
+import { RoomService } from "./services/room.service.js";
 
 type SocketProtected = Socket & {
   user: User
@@ -59,10 +60,18 @@ export class SocketIOServer {
     SocketIOServer.io.on('connection', (socket: SocketProtected) => {
       console.log('User connected, ID of user:', socket.user.id)
 
-      socket.on('message', async (message: Message) => {
-        console.log('Message received:', message, "from user:", socket.user.id, "to room:", message.roomId)
+      socket.on('message', async (payload: Message) => {
+        console.log('Message received:', payload, "from user:", socket.user.id, "to room:", payload.roomId)
 
-        const newMessage = await MessageService.createMessage({ ...message, senderId: socket.user.id })
+        const room = await RoomService.getRoomById(payload.roomId)
+
+        if (!room) {
+          console.error('Room not found:', payload.roomId)
+          socket.emit('error', 'Room not found')
+          return
+        }
+
+        const newMessage = await MessageService.createMessage({ content: payload.content, roomId: payload.roomId, senderId: socket.user.id })
 
         SocketIOServer.io.emit('message', {
           id: newMessage.id,
