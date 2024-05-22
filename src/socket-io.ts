@@ -33,7 +33,9 @@ export class SocketIOServer {
 
       console.log("token:", token)
 
-      const data = UserService.verifyToken(token || "")
+      const data = UserService.verifyToken(token)
+
+      console.log("TOKEN DATA:", data)
 
       if (!data) {
         next(new Error('Unauthorized'))
