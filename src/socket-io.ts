@@ -84,7 +84,7 @@ export class SocketIOServer {
       socket.on('error', (error) => {
         console.error('Socket error:', error)
 
-        socket.emit('error', 'An error occurred')
+        socket.emit('error', error)
       })
     })
 
@@ -93,7 +93,7 @@ export class SocketIOServer {
     })
 
     SocketIOServer.io.on('error', (error) => {
-      console.error('Socket error:', error)
+      console.error('Socket error io:', error)
     })
   }
 }
