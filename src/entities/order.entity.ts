@@ -59,6 +59,8 @@ export class Order extends BaseEntity {
 
   @AfterLoad()
   getTotal() {
-    this.total = this.cartItems ? this.cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * parseInt(cartItem.bookPrice), 0) + " EGP" : "0 EGP";
+    const deliveryCost = this.delivery ? 50 : 0 // 50 EGP if there is delivery
+
+    this.total = this.cartItems ? deliveryCost + this.cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * parseInt(cartItem.bookPrice), 0) + " EGP" : "0 EGP";
   }
 }
