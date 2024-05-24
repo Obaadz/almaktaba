@@ -3,24 +3,29 @@ import { Order } from '../entities/order.entity.js';
 import { CartService } from './cart.service.js';
 
 export class OrderService {
-  public static async createOrder(ownerId: number, note?: string | null): Promise<Order> {
+  public static async createOrder(ownerId: number, note?: string | null, delivery?: boolean | null): Promise<Order> {
 
-    const cart = await CartService.getCartByOwnerId(ownerId)
+    const cart = await CartService.getCartByOwnerId(ownerId);
 
-    const order = new Order()
+    const order = new Order();
 
-    order.owner = cart.owner
-    order.cartItems = cart.cartItems
-    order.sellerLibrary = cart.sellerLibrary
-    order.sellerUser = cart.sellerUser
+    order.owner = cart.owner;
+    order.cartItems = cart.cartItems;
+    order.sellerLibrary = cart.sellerLibrary;
+    order.sellerUser = cart.sellerUser;
     order.code = generateRandomStringNumber(12)
 
     if (note)
-      order.note = note
+      order.note = note;
 
-    await order.save()
+    if (delivery)
+      order.delivery = delivery
+    else
+      order.delivery = false
 
-    return order
+    await order.save();
+
+    return order;
   }
 
   public static async getOrdersByOwnerId(ownerId: number): Promise<Order[]> {

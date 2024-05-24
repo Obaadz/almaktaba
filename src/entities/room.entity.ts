@@ -10,14 +10,14 @@ export class Room extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToOne('User', 'ownedRooms', { eager: true, nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @ManyToOne('User', 'ownedRooms', { eager: true, nullable: false, onDelete: 'CASCADE', onUpdate: 'CASCADE', cascade: true })
   owner: User
 
-  @ManyToMany('User', 'joinedRooms', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @ManyToMany('User', 'joinedRooms', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE', cascade: true })
   @JoinTable()
   users: User[];
 
-  @OneToMany('Message', 'room', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @OneToMany('Message', 'room', { eager: true, nullable: true, onDelete: 'CASCADE', onUpdate: 'CASCADE', cascade: true })
   messages: Message[];
 
   checkIfJoined(user: User): boolean {

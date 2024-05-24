@@ -52,6 +52,9 @@ export class Order extends BaseEntity {
   @Column({ nullable: true })
   rate: string
 
+  @Column({ nullable: true, default: false })
+  delivery: boolean
+
   total: string
 
   @AfterLoad()

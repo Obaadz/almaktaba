@@ -48,6 +48,14 @@ const orderResource: AdminJSOptions['resources'][number] = {
           list: false,
         },
       },
+      delivery: {
+        isVisible: {
+          show: true,
+          edit: true,
+          filter: true,
+          list: false,
+        },
+      },
       createdAt: {
         isVisible: {
           show: true,
@@ -62,12 +70,9 @@ const orderResource: AdminJSOptions['resources'][number] = {
         isVisible: false,
       },
       edit: {
-        layout: ["note", "code", "hasBeenCompleted"],
+        layout: ["note", "code", "delivery", "hasBeenCompleted"],
         before: [beforeEditOrder],
         after: [afterEditOrder]
-      },
-      bulkDelete: {
-        isVisible: false,
       },
     },
   },

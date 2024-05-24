@@ -1,5 +1,6 @@
 import { AdminJSOptions } from "adminjs";
 import { Room } from "../../entities/room.entity.js";
+import { beforeEditRoom } from "../actions/before-edit-room.js";
 
 const roomResource: AdminJSOptions['resources'][number] = {
   resource: Room,
@@ -15,7 +16,7 @@ const roomResource: AdminJSOptions['resources'][number] = {
       },
       users: {
         isVisible: {
-          show: true,
+          show: false,
           edit: false,
           filter: false,
           list: false,
@@ -23,11 +24,19 @@ const roomResource: AdminJSOptions['resources'][number] = {
       },
       messages: {
         isVisible: {
-          show: true,
+          show: false,
           edit: false,
           filter: false,
           list: false,
         },
+      },
+    },
+    actions: {
+      new: {
+        isVisible: false,
+      },
+      edit: {
+        before: [beforeEditRoom],
       },
     },
   },

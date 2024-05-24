@@ -112,7 +112,7 @@ const CartItemsPreview = (props) => {
                 color: 'unset',
               }}
             >
-              <h4>title: {item.book.title}</h4>
+              <h4>Title: {item.book.title}</h4>
               <p>Price: {item.bookPrice}</p>
               <p>Quantity: {item.quantity}</p>
               <p>Status: {bookStatusNumToString(item.book.status)}</p>

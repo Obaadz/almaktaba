@@ -16,7 +16,7 @@ export class OrderController {
     }
 
     try {
-      const order = await OrderService.createOrder(req.auth.user.id, body.note);
+      const order = await OrderService.createOrder(req.auth.user.id, body.note, body.delivery);
 
       await CartService.clearCart(req.auth.user.id)
 
