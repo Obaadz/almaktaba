@@ -72,6 +72,14 @@ const orderResource: AdminJSOptions['resources'][number] = {
           list: true,
         },
       },
+      hasBeenRated: {
+        isVisible: {
+          show: true,
+          edit: false,
+          filter: true,
+          list: false,
+        },
+      },
       createdAt: {
         isVisible: {
           show: true,
