@@ -1,6 +1,7 @@
 import { AdminJSOptions } from "adminjs";
 import { Room } from "../../entities/room.entity.js";
 import { beforeEditRoom } from "../actions/before-edit-room.js";
+import { afterEditRoom } from "../actions/after-edit-room.js";
 
 const roomResource: AdminJSOptions['resources'][number] = {
   resource: Room,
@@ -37,6 +38,7 @@ const roomResource: AdminJSOptions['resources'][number] = {
       },
       edit: {
         before: [beforeEditRoom],
+        after: [afterEditRoom]
       },
     },
   },

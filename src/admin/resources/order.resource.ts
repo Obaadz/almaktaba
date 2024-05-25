@@ -12,14 +12,6 @@ const orderResource: AdminJSOptions['resources'][number] = {
       sortBy: "createdAt",
     },
     properties: {
-      code: {
-        isVisible: {
-          show: true,
-          edit: true,
-          filter: true,
-          list: true,
-        },
-      },
       cartItems: {
         isVisible: {
           list: false,
@@ -48,12 +40,36 @@ const orderResource: AdminJSOptions['resources'][number] = {
           list: false,
         },
       },
+      note: {
+        isVisible: {
+          show: true,
+          edit: true,
+          filter: false,
+          list: false,
+        },
+      },
+      code: {
+        isVisible: {
+          show: true,
+          edit: true,
+          filter: true,
+          list: true,
+        },
+      },
       delivery: {
         isVisible: {
           show: true,
           edit: true,
           filter: true,
           list: false,
+        },
+      },
+      hasBeenCompleted: {
+        isVisible: {
+          show: true,
+          edit: true,
+          filter: true,
+          list: true,
         },
       },
       createdAt: {
@@ -70,7 +86,6 @@ const orderResource: AdminJSOptions['resources'][number] = {
         isVisible: false,
       },
       edit: {
-        layout: ["note", "code", "delivery", "hasBeenCompleted"],
         before: [beforeEditOrder],
         after: [afterEditOrder]
       },
