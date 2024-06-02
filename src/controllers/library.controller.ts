@@ -9,15 +9,15 @@ export class LibraryController {
       const libraries = await LibraryService.getAll()
 
       const sortedLibraries = req.query.lat && req.query.lng ? libraries.map(library => {
-        const distance = getDistanceFromLatLonInMeters(
+        const distanceInMeters = getDistanceFromLatLonInMeters(
           Number(req.query.lat),
           Number(req.query.lng),
           Number(library.lat),
           Number(library.lng)
         )
 
-        return { ...library, distance }
-      }).sort((a, b) => a.distance - b.distance) : libraries
+        return { ...library, distanceInMeters }
+      }).sort((a, b) => a.distanceInMeters - b.distanceInMeters) : libraries
 
       res.status(200).send({ data: { libraries: sortedLibraries }, error: null });
     } catch (error) {
