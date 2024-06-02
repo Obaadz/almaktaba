@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import { LibraryService } from '../services/library.service.js';
 import { BookService } from '../services/book.service.js';
 import { getDistanceFromLatLonInMeters } from '../utils/get-distance-from-lat-lon-in-meters.js';
-import { Filter } from '../utils/enums.js';
+import { BookStatus, Filter } from '../utils/enums.js';
 
 export class LibraryController {
   public static async getAll(req: Request, res: Response): Promise<void> {
@@ -42,6 +42,8 @@ export class LibraryController {
 
       const sort = {}
 
+      let status = undefined
+
       if (req.query.filter) {
         switch (req.query.filter as string) {
           case Filter.LOWEST_PRICE_TO_HIGHEST.toString():
@@ -54,10 +56,10 @@ export class LibraryController {
             sort['salesCount'] = 'DESC'
             break
           case Filter.NEW.toString():
-            sort['status'] = 'DESC'
+            status = BookStatus.New
             break
           case Filter.USED.toString():
-            sort['status'] = 'ASC'
+            status = BookStatus.Used
             break
         }
       }
@@ -65,11 +67,12 @@ export class LibraryController {
       const books = await BookService.getAll({
         library: Number(libraryId),
         categories: req.query.category as any,
-        search: req.query.search && req.query.search != 'null' ? req.query.search as string : null
+        search: req.query.search && req.query.search != 'null' ? req.query.search as string : null,
+        status
       }, sort)
 
       if (req.query.filter == Filter.TOP_RATED.toString()) {
-        books.sort((a, b) => Number(b.library.totalRate) - Number(a.library.totalRate))
+        books.sort((a, b) => Number(b.library?.totalRate || "0") - Number(a.library?.totalRate || "0"))
       }
 
       res.status(200).send({ data: { books }, error: null });
