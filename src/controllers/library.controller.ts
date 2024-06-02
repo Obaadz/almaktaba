@@ -29,11 +29,18 @@ export class LibraryController {
   public static async getAllLibraryBooks(req: Request, res: Response): Promise<void> {
     const { libraryId } = req.params;
 
+    if (req.query.category && typeof req.query.category == 'string')
+      req.query.category = [Number(req.query.category) as any]
+    else if (req.query.category && Array.isArray(req.query.category))
+      req.query.category = req.query.category.map((category) => Number(category)) as any
+
+    console.log(req.query.category)
+
     try {
       const books = await BookService.getAll({
         library: Number(libraryId),
-        category: req.query.category && req.query.category != "null"
-          ? Number(req.query.category) : null
+        categories: req.query.category as any,
+        search: req.query.search && req.query.search != 'null' ? req.query.search as string : null
       })
 
       res.status(200).send({ data: { books }, error: null });

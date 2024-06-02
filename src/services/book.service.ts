@@ -1,14 +1,28 @@
-import { IsNull } from 'typeorm';
+import { IsNull, Like, In } from 'typeorm';
 import { Book } from '../entities/book.entity.js';
-import { BookCategory } from '../utils/enums.js';
 
 export class BookService {
-  public static async getAll(query: { library: number | null, category?: BookCategory | null | "null" | "all" }): Promise<Book[]> {
-    return Book.find({
-      where: {
+  public static async getAll(query: { library: number | null, categories?: number[] | null, search?: string }): Promise<Book[]> {
+    const where = query.search ? [
+      {
         library: !query.library ? IsNull() : { id: query.library },
-        category: !query.category || query.category == "null" || query.category == "all" ? undefined : query.category
+        category: !query.categories ? undefined : In(query.categories),
+        title: Like(`%${query.search}%`)
+      },
+      {
+        library: !query.library ? IsNull() : { id: query.library },
+        category: !query.categories ? undefined : In(query.categories),
+        author: Like(`%${query.search}%`)
       }
+    ] : [
+      {
+        library: !query.library ? IsNull() : { id: query.library },
+        category: !query.categories ? undefined : In(query.categories),
+      }
+    ]
+
+    return Book.find({
+      where,
     })
   }
 
