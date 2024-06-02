@@ -3,6 +3,7 @@ import { CartService } from '../services/cart.service.js';
 import { OrderService } from '../services/order.service.js';
 import { LibraryService } from '../services/library.service.js';
 import { UserService } from '../services/user.service.js';
+import { BookService } from '../services/book.service.js';
 
 export class OrderController {
   public static async createOrder(req: Request, res: Response): Promise<void> {
@@ -19,6 +20,21 @@ export class OrderController {
       const order = await OrderService.createOrder(req.auth.user.id, body.note, body.delivery);
 
       await CartService.clearCart(req.auth.user.id)
+
+      const bookIds = cart.cartItems.map((cartItem) => cartItem.book.id)
+
+      bookIds.forEach(async (id) => {
+        const book = await BookService.getOneById(id)
+
+        if (book) {
+          if (!book.salesCount)
+            book.salesCount = 1
+          else
+            book.salesCount += 1
+        }
+
+        await book.save()
+      })
 
       res.status(200).send({ data: { order }, error: null });
     } catch (error) {

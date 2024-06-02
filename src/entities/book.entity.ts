@@ -39,6 +39,9 @@ export class Book extends BaseEntity {
   @IsEnum(BookCategory)
   category: number;
 
+  @Column({ nullable: true })
+  salesCount: number;
+
   @ManyToOne(() => User, { eager: true, nullable: true })
   @JoinColumn()
   seller: User;

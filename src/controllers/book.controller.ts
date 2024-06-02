@@ -11,11 +11,22 @@ export class BookController {
 
       console.log(req.query.category)
 
+      const sort = {}
+
+      if (req.query.salesCount && req.query.salesCount != 'null')
+        sort['salesCount'] = req.query.salesCount
+      if (req.query.price && req.query.price != 'null')
+        sort['price'] = req.query.price
+      if (req.query.topRated && req.query.topRated != 'null')
+        sort['user'] = {
+          totalRate: req.query.topRated
+        }
+
       const books = await BookService.getAll({
         library: null,
         categories: req.query.category as any,
         search: req.query.search && req.query.search != 'null' ? req.query.search as string : null
-      })
+      }, sort)
 
       res.status(200).send({ data: { books }, error: null });
     } catch (error) {

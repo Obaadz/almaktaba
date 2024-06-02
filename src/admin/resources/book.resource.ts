@@ -114,6 +114,14 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: false,
         },
       },
+      salesCount: {
+        isVisible: {
+          list: false,
+          show: false,
+          edit: false,
+          filter: false,
+        },
+      },
     },
     actions: {
       new: {
