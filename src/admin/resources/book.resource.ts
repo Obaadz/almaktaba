@@ -122,6 +122,15 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: false,
         },
       },
+      description: {
+        type: 'textarea',
+        isVisible: {
+          list: false,
+          show: true,
+          edit: true,
+          filter: false,
+        },
+      },
     },
     actions: {
       new: {

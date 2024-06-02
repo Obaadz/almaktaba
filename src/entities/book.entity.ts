@@ -27,6 +27,10 @@ export class Book extends BaseEntity {
   @IsString()
   author: string;
 
+  @Column({ nullable: true })
+  @IsString()
+  description: string;
+
   @Column()
   @IsEnum(BookStatus)
   status: number;
