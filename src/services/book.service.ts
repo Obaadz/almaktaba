@@ -5,7 +5,6 @@ import { BookStatus } from '../utils/enums.js';
 export class BookService {
   public static async getAll(query: { library: number | null, categories?: number[] | null, search?: string, status?: BookStatus }, order?: {
     salesCount?: 'ASC' | 'DESC',
-    price?: 'ASC' | 'DESC',
   }): Promise<Book[]> {
     const where = query.search ? [
       {

@@ -19,12 +19,6 @@ export class BookController {
 
       if (req.query.filter) {
         switch (req.query.filter as string) {
-          case Filter.LOWEST_PRICE_TO_HIGHEST.toString():
-            sort['price'] = 'ASC'
-            break
-          case Filter.HIGHEST_PRICE_TO_LOWEST.toString():
-            sort['price'] = 'DESC'
-            break
           case Filter.TOP_SELLING.toString():
             sort['salesCount'] = 'DESC'
             break
@@ -44,9 +38,18 @@ export class BookController {
         status
       }, sort)
 
-      if (req.query.filter == Filter.TOP_RATED.toString()) {
-        books.sort((a, b) => Number(b.seller?.totalRate || "0") - Number(a.seller?.totalRate || "0"))
-      }
+      if (req.query.filter)
+        switch (req.query.filter as string) {
+          case Filter.TOP_RATED.toString():
+            books.sort((a, b) => Number(b.seller?.totalRate || "0") - Number(a.seller?.totalRate || "0"))
+            break
+          case Filter.LOWEST_PRICE_TO_HIGHEST.toString():
+            books.sort((a, b) => Number(a.price) - Number(b.price))
+            break
+          case Filter.HIGHEST_PRICE_TO_LOWEST.toString():
+            books.sort((a, b) => Number(b.price) - Number(a.price))
+            break
+        }
 
       res.status(200).send({ data: { books }, error: null });
     } catch (error) {
