@@ -15,3 +15,12 @@ export enum BookCategory {
   "Dark fantasy" = 9,
   Comedy = 10
 }
+
+export enum Filter {
+  LOWEST_PRICE_TO_HIGHEST = 1,
+  HIGHEST_PRICE_TO_LOWEST = 2,
+  TOP_RATED = 3,
+  TOP_SELLING = 4,
+  NEW = 5,
+  USED = 6
+}

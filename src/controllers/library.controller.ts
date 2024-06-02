@@ -2,6 +2,7 @@ import type { Request, Response } from 'express';
 import { LibraryService } from '../services/library.service.js';
 import { BookService } from '../services/book.service.js';
 import { getDistanceFromLatLonInMeters } from '../utils/get-distance-from-lat-lon-in-meters.js';
+import { Filter } from '../utils/enums.js';
 
 export class LibraryController {
   public static async getAll(req: Request, res: Response): Promise<void> {
@@ -37,23 +38,39 @@ export class LibraryController {
         req.query.category = req.query.category.map((category) => Number(category)) as any
 
       console.log(req.query.category)
+      console.log(req.query.filter)
 
       const sort = {}
 
-      if (req.query.salesCount && req.query.salesCount != 'null')
-        sort['salesCount'] = req.query.salesCount
-      if (req.query.price && req.query.price != 'null')
-        sort['price'] = req.query.price
-      if (req.query.topRated && req.query.topRated != 'null')
-        sort['library'] = {
-          totalRate: req.query.topRated
+      if (req.query.filter) {
+        switch (req.query.filter as string) {
+          case Filter.LOWEST_PRICE_TO_HIGHEST.toString():
+            sort['price'] = 'ASC'
+            break
+          case Filter.HIGHEST_PRICE_TO_LOWEST.toString():
+            sort['price'] = 'DESC'
+            break
+          case Filter.TOP_SELLING.toString():
+            sort['salesCount'] = 'DESC'
+            break
+          case Filter.NEW.toString():
+            sort['status'] = 'DESC'
+            break
+          case Filter.USED.toString():
+            sort['status'] = 'ASC'
+            break
         }
+      }
 
       const books = await BookService.getAll({
         library: Number(libraryId),
         categories: req.query.category as any,
         search: req.query.search && req.query.search != 'null' ? req.query.search as string : null
       }, sort)
+
+      if (req.query.filter == Filter.TOP_RATED.toString()) {
+        books.sort((a, b) => Number(b.library.totalRate) - Number(a.library.totalRate))
+      }
 
       res.status(200).send({ data: { books }, error: null });
     } catch (error) {

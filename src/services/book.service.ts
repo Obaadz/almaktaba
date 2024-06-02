@@ -5,12 +5,6 @@ export class BookService {
   public static async getAll(query: { library: number | null, categories?: number[] | null, search?: string }, order?: {
     salesCount?: 'ASC' | 'DESC',
     price?: 'ASC' | 'DESC',
-    library?: {
-      totalRate: 'ASC' | 'DESC'
-    }
-    user?: {
-      totalRate: 'ASC' | 'DESC'
-    }
   }): Promise<Book[]> {
     const where = query.search ? [
       {
