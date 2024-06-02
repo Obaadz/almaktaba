@@ -41,13 +41,13 @@ export class BookController {
       if (req.query.filter)
         switch (req.query.filter as string) {
           case Filter.TOP_RATED.toString():
-            books.sort((a, b) => Number(b.seller?.totalRate || "0") - Number(a.seller?.totalRate || "0"))
+            books.sort((a, b) => parseFloat(b.seller?.totalRate || "0") - parseFloat(a.seller?.totalRate || "0"))
             break
           case Filter.LOWEST_PRICE_TO_HIGHEST.toString():
-            books.sort((a, b) => Number(a.price) - Number(b.price))
+            books.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
             break
           case Filter.HIGHEST_PRICE_TO_LOWEST.toString():
-            books.sort((a, b) => Number(b.price) - Number(a.price))
+            books.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
             break
         }
 
