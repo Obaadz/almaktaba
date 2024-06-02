@@ -62,6 +62,15 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: false,
         },
       },
+      author: {
+        type: 'string',
+        isVisible: {
+          list: true,
+          show: true,
+          edit: true,
+          filter: false,
+        },
+      },
       status: {
         type: 'string',
         isVisible: {
