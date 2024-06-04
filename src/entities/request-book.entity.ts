@@ -1,5 +1,5 @@
 import { IsString } from 'class-validator';
-import { FILES_LINK } from '../admin/constants.js';
+import { FILES_LINK2 } from '../admin/constants.js';
 import { AfterLoad, BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { User } from './user.entity.js';
 
@@ -40,6 +40,6 @@ export class RequestBook extends BaseEntity {
 
   @AfterLoad()
   getUrl() {
-    this.url = FILES_LINK + `/${this.key}`;
+    this.url = FILES_LINK2 + `/${this.key}`;
   }
 }

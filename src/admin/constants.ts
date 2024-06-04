@@ -4,3 +4,4 @@ export const DEFAULT_ADMIN = {
 };
 
 export const FILES_LINK = process.env.FILES_LINK
+export const FILES_LINK2 = process.env.FILES_LINK2
