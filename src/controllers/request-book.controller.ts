@@ -5,6 +5,8 @@ export class RequestBookController {
   public static async createRequestBook(req: Request, res: Response): Promise<void> {
     const { body } = req;
     try {
+      console.log("T")
+      console.log(req.file)
       console.log(body)
 
       const book = await RequestBookService.createOne(req.auth.user.id, body.title, body.author, body.description, req.file);
