@@ -91,13 +91,13 @@ const requestBookResource: AdminJSOptions['resources'][number] = {
         },
       },
     },
-  },
-  actions: {
-    new: {
-      before: [beforeUploadFile2],
-    },
-    edit: {
-      before: [beforeUploadFile2],
+    actions: {
+      new: {
+        before: [beforeUploadFile2]
+      },
+      edit: {
+        before: [beforeUploadFile2],
+      },
     },
   },
   features: [

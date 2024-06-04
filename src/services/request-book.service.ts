@@ -30,4 +30,8 @@ export class RequestBookService {
 
     return newBook
   }
+
+  public static async getRequestBookById(id: number): Promise<RequestBook | undefined> {
+    return RequestBook.findOne({ where: { id } })
+  }
 }
