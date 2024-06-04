@@ -8,6 +8,7 @@ import cartResource from './resources/cart.resource.js';
 import cartItemResource from './resources/cart-item.resource.js';
 import messageResource from './resources/message.resource.js';
 import roomResource from './resources/room.resource.js';
+import requestBookResource from './resources/request-book.resource.js';
 
 const options: AdminJSOptions = {
   componentLoader,
@@ -21,6 +22,7 @@ const options: AdminJSOptions = {
     cartItemResource,
     roomResource,
     messageResource,
+    requestBookResource
   ],
   databases: [],
 };

@@ -2,7 +2,6 @@ import 'reflect-metadata'
 import express from 'express';
 import AdminJS from 'adminjs';
 import { buildAuthenticatedRouter } from '@adminjs/express';
-
 import provider from './admin/auth-provider.js';
 import options from './admin/options.js';
 import initializeDb from './db/index.js';
@@ -16,6 +15,7 @@ import morgan from 'morgan'
 import { userRouter } from './routes/user.route.js';
 import { orderRouter } from './routes/order.route.js';
 import { roomRouter } from './routes/room.route.js';
+import { requestBookRouter } from './routes/request-book.route.js'
 import { SocketIOServer } from './socket-io.js';
 import http from "http";
 
@@ -80,6 +80,7 @@ const start = async () => {
   app.use(userRouter)
   app.use(orderRouter)
   app.use(roomRouter)
+  app.use(requestBookRouter)
 
   const server = http.createServer(app);
 

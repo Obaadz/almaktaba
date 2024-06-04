@@ -131,6 +131,15 @@ const bookResource: AdminJSOptions['resources'][number] = {
           filter: false,
         },
       },
+      isRequested: {
+        type: 'boolean',
+        isVisible: {
+          list: false,
+          show: false,
+          edit: false,
+          filter: false,
+        },
+      }
     },
     actions: {
       new: {
