@@ -71,6 +71,7 @@ const start = async () => {
   app.use(admin.options.rootPath, router);
 
   app.use(express.json())
+  app.use(express.urlencoded({ extended: true }))
 
   app.use(morgan('dev'))
 
