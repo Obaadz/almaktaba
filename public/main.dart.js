@@ -52981,7 +52981,7 @@ p=n}o=t.p
 r=A.ar(A.tY(A.cw(A.b([p,A.ar(m,10*$.p().gL(),m),A.hz(q.x,"Book Name",m,B.bM,m,m,!1,m,m,m,m,m),A.ar(m,10*$.p().gL(),m),A.hz(q.y,"Author Name",m,B.bM,m,m,!1,m,m,m,m,m),A.ar(m,10*$.p().gL(),m),A.hz(q.z,"Book Description",m,B.bM,10,4,!1,m,m,m,m,m)],o),B.aI,B.t,B.q)),440*r,m)
 p=A.fY(m,m,new A.aR(B.aj,t.Il),m,m,m,m,m,m,m,new A.aR(new A.R(1/0,35*$.p().gL()),t.VY),m,m,m,m,new A.aR(new A.bC(A.cC(A.cd(2)),B.n),t.fj),m,m,m,m,m,m)
 n=q.r?A.B8(B.e,10*$.p().gL()):A.ag("Request Book",m,m,m,A.aj(m,m,B.e,m,m,m,m,m,m,m,m,$.p().a6(3),m,m,m,m,m,!0,m,m,m,m,m,m,m,m),m,m)
-return A.a9W(m,m,A.bE(m,A.cw(A.b([r,B.bB,A.jG(n,new A.azA(q,b,a,this.b),p)],o),B.x,B.t,B.q),B.l,m,m,m,m,500*j,m,new A.at(k,k,k,k),m,m,100*(i.a.a/s.a)),B.l,m,B.ft,m,new A.bC(l,B.n),m)},
+return A.a9W(m,m,A.bE(m,A.cw(A.b([r,B.bB,A.jG(n,new A.azA(q,a,b,this.b),p)],o),B.x,B.t,B.q),B.l,m,m,m,m,500*j,m,new A.at(k,k,k,k),m,m,100*(i.a.a/s.a)),B.l,m,B.ft,m,new A.bC(l,B.n),m)},
 $S:469}
 A.azy.prototype={
 $0(){var s=0,r=A.u(t.H),q=this,p,o
@@ -53050,22 +53050,22 @@ $0(){var s=0,r=A.u(t.H),q,p=this,o,n,m,l
 var $async$$0=A.v(function(a,b){if(a===1)return A.q(b,r)
 while(true)switch(s){case 0:l=p.a
 if(l.r){s=1
-break}l.r=!0
-o=p.b
-o.$1(new A.azs())
-n=l.x
-if(n.a.a.length!==0)if(l.y.a.a.length!==0)if(l.z.a.a.length!==0){m=l.w
-m=m==null||m.length===0}else m=!0
-else m=!0
-else m=!0
-if(m){A.cY("Please fill all fields",B.X,B.aM).cU(0,p.c)
+break}o=l.x
+if(o.a.a.length!==0)if(l.y.a.a.length!==0)if(l.z.a.a.length!==0){n=l.w
+n=n==null||n.length===0}else n=!0
+else n=!0
+else n=!0
+if(n){A.cY("Please fill all fields",B.X,B.aM).cU(0,p.b)
 s=1
-break}m=l.w
+break}l.r=!0
+n=p.c
+n.$1(new A.azs())
+m=l.w
 m.toString
 s=3
-return A.w(p.d.DV(l.y,l.z,m,n),$async$$0)
+return A.w(p.d.DV(l.y,l.z,m,o),$async$$0)
 case 3:l.r=!1
-o.$1(new A.azt())
+n.$1(new A.azt())
 case 1:return A.r(q,r)}})
 return A.t($async$$0,r)},
 $S:5}
