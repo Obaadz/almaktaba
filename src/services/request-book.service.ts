@@ -7,8 +7,6 @@ export class RequestBookService {
     buffer: Buffer,
     originalname: string,
     mimetype: string,
-    size: number,
-    fieldname: string
   }
   ): Promise<RequestBook> {
     const newBook = new RequestBook()
@@ -19,7 +17,7 @@ export class RequestBookService {
     newBook.title = title
     newBook.author = author
     newBook.description = description
-    newBook.key = image?.fieldname + '-' + Date.now() + '-' + image?.originalname
+    newBook.key = Date.now() + '-' + image?.originalname
     newBook.bucket = 'public/files2'
     newBook.mime = image?.mimetype
 
