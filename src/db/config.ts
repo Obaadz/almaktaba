@@ -20,7 +20,7 @@ const config: DataSourceOptions = {
   type: process.env.DATABASE_DIALECT as any,
   host: '127.0.0.1',
   username: 'root',
-  password: '',
+  password: '12345678',
   database: 'almaktaba4',
   entities: [User, Library, Book, Cart, CartItem,
     Order, Room, Message, RequestBook
