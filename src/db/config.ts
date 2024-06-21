@@ -25,6 +25,7 @@ const config: DataSourceOptions = {
   entities: [User, Library, Book, Cart, CartItem,
     Order, Room, Message, RequestBook
   ],
+  debug: true,
   migrations,
   migrationsRun: false,
   migrationsTableName: 'migrations',
