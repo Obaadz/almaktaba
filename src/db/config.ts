@@ -18,7 +18,7 @@ const config: DataSourceOptions = {
   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: process.env.DATABASE_DIALECT as any,
-  host: 'localhost',
+  host: '127.0.0.1',
   username: 'root',
   password: '',
   database: 'almaktaba4',
