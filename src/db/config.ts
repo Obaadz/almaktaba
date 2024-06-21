@@ -18,7 +18,10 @@ const config: DataSourceOptions = {
   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   type: process.env.DATABASE_DIALECT as any,
-  url: process.env.DATABASE_URL,
+  host: 'localhost',
+  username: 'root',
+  password: '',
+  database: 'almaktaba4',
   entities: [User, Library, Book, Cart, CartItem,
     Order, Room, Message, RequestBook
   ],
